@@ -1,0 +1,32 @@
+{
+  "name": "vanillajs-forkify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WodenWang820118/vanillaJS-forkify.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WodenWang820118/vanillaJS-forkify/issues"
+  },
+  "homepage": "https://github.com/WodenWang820118/vanillaJS-forkify#readme",
+  "devDependencies": {
+    "@parcel/transformer-image": "^2.0.0-rc.0",
+    "@parcel/transformer-sass": "^2.0.0-rc.0",
+    "parcel": "^2.0.0-rc.0"
+  },
+  "dependencies": {
+    "core-js": "^3.26.0",
+    "dotenv": "^16.0.3",
+    "fractional": "^1.0.0",
+    "regenerator-runtime": "^0.13.10"
+  }
+}
