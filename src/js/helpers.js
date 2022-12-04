@@ -62,3 +62,51 @@ export const sendJSON = async function(url, uploadData) {
     throw error;
   }
 }
+
+export const createRecipeObject = function(data) {
+  const { recipe } = data.data;
+  return {
+    id: recipe.id,
+    title: recipe.title,
+    publisher: recipe.publisher,
+    sourceUrl: recipe.source_url,
+    image: recipe.image_url,
+    servings: recipe.servings,
+    cookingTime: recipe.cooking_time,
+    ingredients: recipe.ingredients,
+    ...(recipe.key && { key: recipe.key }),
+  };
+}
+
+export const waitForElm = function(selector) {
+  return new Promise(resolve => {
+    if (document.querySelector(selector)) {
+        return resolve(document.querySelector(selector));
+    }
+
+    const observer = new MutationObserver(mutations => {
+      if (document.querySelector(selector)) {
+          resolve(document.querySelector(selector));
+          observer.disconnect();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+}
+/* test block */
+waitForElm('.search-results').then(elm => {
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      // console.warn(mutation);
+    });
+  });
+
+  observer.observe(elm, {
+    childList: true,
+    subtree: true
+  });
+});

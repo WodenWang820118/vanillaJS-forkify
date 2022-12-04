@@ -1,11 +1,27 @@
-import View from './view.js';
-import icons from 'url:../../img/icons.svg'; // Parcel 2
+import icons from 'url:../../../img/icons.svg'; // Parcel 2
+import { INITIAL_PAGE, RES_PER_PAGE } from '../../config';
+import { BehaviorSubject, fromEvent } from 'rxjs';
 
-class PaginationView extends View {
-  _parentElement = document.querySelector('.pagination');
+// TODO: will be combined inside the result-view
+class PaginationService {
+  // _parentElement = document.querySelector('.pagination');
+  pageObservable = new BehaviorSubject(INITIAL_PAGE);
 
-  addHandlerClick(handler) {
-    this._parentElement.addEventListener('click', function (e) {
+  constructor() {
+  }
+
+  addHandlerClick(element, handler) {
+    // this._parentElement.addEventListener('click', function (e) {
+    //   const btn = e.target.closest('.btn--inline');
+    //   if (!btn) return;
+    //   const goToPage = +btn.dataset.goto;
+    //   handler(goToPage);
+    // });
+
+    // should pass document.querySelector('.pagination') as element
+    console.log('element', element);
+    console.log('handler', handler);
+    fromEvent(element, 'click').subscribe((e) => {
       const btn = e.target.closest('.btn--inline');
       if (!btn) return;
       const goToPage = +btn.dataset.goto;
@@ -13,10 +29,16 @@ class PaginationView extends View {
     });
   }
 
-  _generateMarkup() {
-    const curPage = this._data.page;
+  clear(parentElement) {
+    parentElement.innerHTML = '';
+  }
+
+  generateMarkup(results, page = INITIAL_PAGE) {
+    if (!results) return '';
+
+    const curPage = page;
     const numPages = Math.ceil(
-      this._data.results.length / this._data.resultsPerPage
+      results.length / RES_PER_PAGE
     );
     // Page 1, and there are other pages
     if (curPage === 1 && numPages > 1) {
@@ -61,4 +83,4 @@ class PaginationView extends View {
   }
 }
 
-export default new PaginationView();
+export default new PaginationService();
