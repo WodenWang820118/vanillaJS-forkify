@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "src/app/app.js",
   "scripts": {
     "start": "parcel src/index.html && parcel watch src/index.html",
-    "build": "parcel build index.html"
+    "build": "parcel src/index.html --public-url .",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/WodenWang820118/vanillaJS-forkify#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.0",
+    "gh-pages": "^4.0.0",
     "parcel": "^2.8.0"
   },
   "dependencies": {
