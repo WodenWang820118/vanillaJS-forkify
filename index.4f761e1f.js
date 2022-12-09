@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"7ZoMj":[function(require,module,exports) {
+})({"arNBx":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "d7fe96c059a40e7a";
+module.bundle.HMR_BUNDLE_ID = "0ff71ac54f761e1f";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -531,321 +531,1258 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"8lRBv":[function(require,module,exports) {
+},{}],"4banG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _addRecipeViewJs = require("./components/add-recipe-view/add-recipe-view.js");
-var _addRecipeViewJsDefault = parcelHelpers.interopDefault(_addRecipeViewJs);
-var _bookmarkViewJs = require("./components/nav-bar/bookmark-view/bookmark-view.js");
-var _bookmarkViewJsDefault = parcelHelpers.interopDefault(_bookmarkViewJs);
-var _copyrightJs = require("./components/copyright/copyright.js");
-var _copyrightJsDefault = parcelHelpers.interopDefault(_copyrightJs);
-var _navBarJs = require("./components/nav-bar/nav-bar.js");
-var _navBarJsDefault = parcelHelpers.interopDefault(_navBarJs);
-var _paginationViewJs = require("./components/result-view/pagination-view/pagination-view.js");
-var _paginationViewJsDefault = parcelHelpers.interopDefault(_paginationViewJs);
-var _recipeViewJs = require("./components/recipe-view/recipe-view.js");
-var _recipeViewJsDefault = parcelHelpers.interopDefault(_recipeViewJs);
-var _resultViewJs = require("./components/result-view/result-view.js");
-var _resultViewJsDefault = parcelHelpers.interopDefault(_resultViewJs);
-var _searchBarJs = require("./components/search-bar/search-bar.js");
-var _searchBarJsDefault = parcelHelpers.interopDefault(_searchBarJs);
-var _logoPng = require("url:../img/logo.png");
-var _logoPngDefault = parcelHelpers.interopDefault(_logoPng);
-const declarations = [
-    (0, _addRecipeViewJsDefault.default),
-    (0, _copyrightJsDefault.default),
-    (0, _navBarJsDefault.default),
-    (0, _recipeViewJsDefault.default),
-    (0, _resultViewJsDefault.default),
-    (0, _searchBarJsDefault.default)
-];
-// TODO: how to wait for all the elements to be loaded?
-class App extends HTMLElement {
+var _esRegexpFlagsJs = require("core-js/modules/es.regexp.flags.js");
+var _webImmediateJs = require("core-js/modules/web.immediate.js");
+var _utils = require("./services/utils");
+var _afterViewInit = require("../app/interfaces/afterViewInit");
+var _declarations = require("./declarations");
+var _appHtml = require("url:./app.html");
+var _appHtmlDefault = parcelHelpers.interopDefault(_appHtml);
+var _runtime = require("regenerator-runtime/runtime");
+if (module.hot) module.hot.accept(function() {
+    location.reload();
+});
+class App extends (0, _utils.implement)(HTMLElement, [
+    (0, _afterViewInit.AfterViewInit)
+]) {
     constructor(){
         super();
+        this.declare();
     }
     connectedCallback() {
-        this.declare(declarations);
-        this.innerHTML = `
-    <div class="container">
-      <header class="header">
-        <img src="${0, _logoPngDefault.default}" alt="Logo" class="header__logo" />
-        <app-search-bar></app-search-bar>
-        <app-nav-bar class="nav"></app-nav-bar>
-      </header>
-
-      <div class="search-results" id="search-results">
-        <app-result-view></app-result-view>
-        <app-copy-right></app-copy-right>
-      </div>
-
-      <app-recipe-view class="recipe"></app-recipe-view>
-    </div>
-    <app-add-recipe-view></app-add-recipe-view>
-    `;
+        (0, _utils.readHTML)((0, _appHtmlDefault.default)).then((html)=>{
+            this.innerHTML = html;
+            this.afterViewInit();
+        });
     }
-    declare(declarations) {
-        declarations.forEach((declaration)=>{
-            let declarationName = "";
-            for (const char of declaration.name)if (char.toUpperCase() === char) declarationName += "-" + char.toLowerCase();
-            else declarationName += char;
-            // console.log(declarationName.slice(1));
-            customElements.define(`app-${declarationName.slice(1)}`, declaration);
+    declare() {
+        (0, _declarations.declarations).forEach((declaration)=>{
+            customElements.define(declaration.selector, declaration.class);
+        });
+    }
+    afterViewInit() {
+        (0, _declarations.declarations).forEach((declaration)=>{
+            // console.log('build ' + declaration.selector);
+            const component = document.querySelector(declaration.selector);
+            if (declaration.html) (0, _utils.readHTML)(declaration.html).then((html)=>{
+                component.innerHTML = html;
+                component.afterViewInit();
+            });
         });
     }
 }
 customElements.define("app-root", App);
 
-},{"./components/add-recipe-view/add-recipe-view.js":"kQOlQ","./components/nav-bar/bookmark-view/bookmark-view.js":"3g9B8","./components/copyright/copyright.js":"j4IVx","./components/nav-bar/nav-bar.js":"cx2ih","./components/result-view/pagination-view/pagination-view.js":"4eRvL","./components/recipe-view/recipe-view.js":"gHASO","./components/result-view/result-view.js":"EFEjU","./components/search-bar/search-bar.js":"4R6xY","url:../img/logo.png":"1tVao","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kQOlQ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _addRecipeModel = require("./add-recipe-model");
-var _addRecipeModelDefault = parcelHelpers.interopDefault(_addRecipeModel);
-var _iconsSvg = require("url:../../../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-var _helpers = require("../../helpers");
-var _rxjs = require("rxjs");
-class AddRecipeView extends HTMLElement {
-    _parentElement;
-    _message;
-    _window;
-    _overlay;
-    _btnOpen;
-    _btnClose;
-    model;
-    constructor(){
-        super();
-        this.setModel((0, _addRecipeModelDefault.default));
+},{"core-js/modules/es.regexp.flags.js":"gSXXb","core-js/modules/web.immediate.js":"49tUX","./services/utils":"5qllG","../app/interfaces/afterViewInit":"5erAA","./declarations":"3RayG","url:./app.html":"gphWe","regenerator-runtime/runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gSXXb":[function(require,module,exports) {
+var global = require("../internals/global");
+var DESCRIPTORS = require("../internals/descriptors");
+var defineBuiltInAccessor = require("../internals/define-built-in-accessor");
+var regExpFlags = require("../internals/regexp-flags");
+var fails = require("../internals/fails");
+// babel-minify and Closure Compiler transpiles RegExp('.', 'd') -> /./d and it causes SyntaxError
+var RegExp = global.RegExp;
+var RegExpPrototype = RegExp.prototype;
+var FORCED = DESCRIPTORS && fails(function() {
+    var INDICES_SUPPORT = true;
+    try {
+        RegExp(".", "d");
+    } catch (error) {
+        INDICES_SUPPORT = false;
     }
-    setModel(model) {
-        this.model = model;
-    }
-    connectedCallback() {
-        this.innerHTML = `
-    <div class="overlay hidden"></div>
-    <div class="add-recipe-window hidden">
-      <button class="btn--close-modal">&times;</button>
-      <form class="upload">
-        <div class="upload__column">
-          <h3 class="upload__heading">Recipe data</h3>
-          <label>Title</label>
-          <input value="TEST123" required name="title" type="text" />
-          <label>URL</label>
-          <input value="TEST123" required name="sourceUrl" type="text" />
-          <label>Image URL</label>
-          <input value="TEST123" required name="image" type="text" />
-          <label>Publisher</label>
-          <input value="TEST123" required name="publisher" type="text" />
-          <label>Prep time</label>
-          <input value="23" required name="cookingTime" type="number" />
-          <label>Servings</label>
-          <input value="23" required name="servings" type="number" />
-        </div>
-
-        <div class="upload__column">
-          <h3 class="upload__heading">Ingredients</h3>
-          <label>Ingredient 1</label>
-          <input
-            value="0.5,kg,Rice"
-            type="text"
-            required
-            name="ingredient-1"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 2</label>
-          <input
-            value="1,,Avocado"
-            type="text"
-            name="ingredient-2"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 3</label>
-          <input
-            value=",,salt"
-            type="text"
-            name="ingredient-3"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 4</label>
-          <input
-            type="text"
-            name="ingredient-4"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 5</label>
-          <input
-            type="text"
-            name="ingredient-5"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 6</label>
-          <input
-            type="text"
-            name="ingredient-6"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-        </div>
-
-        <button class="btn upload__btn">
-          <svg>
-            <use href="${0, _iconsSvgDefault.default}#icon-upload-cloud"></use>
-          </svg>
-          <span>Upload</span>
-        </button>
-      </form>
-    </div>
-    `;
-        this.ready();
-    }
-    ready() {
-        (0, _helpers.waitForElm)(".overlay").then(()=>{
-            // waiting for the element from the nav-bar component
-            (0, _helpers.waitForElm)(".nav__btn--add-recipe").then(()=>{
-                const parentElement = document.querySelector(".upload");
-                this._message = "Recipe was successfully uploaded :)";
-                this._window = document.querySelector(".add-recipe-window");
-                this._overlay = document.querySelector(".overlay");
-                this._btnOpen = document.querySelector(".nav__btn--add-recipe");
-                this._btnClose = document.querySelector(".btn--close-modal");
-                (this.model && parentElement) ?? this.model.setParentElement(parentElement);
-                this.addHandlerOpenWindow();
-                this.addHandlerCloseWindow();
-                this.addHandlerUploadRecipe(parentElement, this.model);
-            });
-        });
-    }
-    addHandlerOpenWindow() {
-        // console.log('test the add recipe view');
-        // console.log('this._btnOpen', this._btnOpen);
-        // console.log('this._overlay', this._overlay);
-        // console.log('this._window', this._window);
-        (0, _rxjs.fromEvent)(this._btnOpen, "click").subscribe(()=>{
-            this._overlay.classList.remove("hidden");
-            this._window.classList.remove("hidden");
-        });
-    }
-    addHandlerCloseWindow() {
-        (0, _rxjs.fromEvent)(this._btnClose, "click").subscribe(()=>{
-            this._overlay.classList.add("hidden");
-            this._window.classList.add("hidden");
-        });
-    }
-    addHandlerUploadRecipe(parentElement, model) {
-        (0, _rxjs.fromEvent)(parentElement, "submit").subscribe((e)=>{
-            // 1) stop form from submitting
-            e.preventDefault();
-            // 2) construct FormData object
-            const dataArr = [
-                ...new FormData(parentElement)
-            ];
-            const data = Object.fromEntries(dataArr);
-            // 3) upload recipe
-            // 3.1) render spinner while waiting for response
-            // 3.2) post recipe to server; update current recipe state
-            // 3.3) render success message
-            // 3.4) update bookmarks view
-            model.uploadRecipe(parentElement, data);
-            // 4) close the form window
-            setTimeout(()=>{
-                this._overlay.classList.add("hidden");
-                this._window.classList.add("hidden");
-                this.connectedCallback(); // restore initial state
-            }, 1500);
-        });
-    }
-}
-exports.default = AddRecipeView;
-
-},{"./add-recipe-model":"g0Bxx","url:../../../img/icons.svg":"gg8PR","../../helpers":"hGI1E","rxjs":"lLy7s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"g0Bxx":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _helpersJs = require("../../helpers.js");
-var _configJs = require("../../config.js");
-var _viewServiceJs = require("../../services/ui-services/viewService.js");
-var _viewServiceJsDefault = parcelHelpers.interopDefault(_viewServiceJs);
-var _recipeServiceJs = require("../../services/ui-services/recipeService.js");
-var _recipeServiceJsDefault = parcelHelpers.interopDefault(_recipeServiceJs);
-var _bookmarkServiceJs = require("../../services/bookmarkService.js");
-var _bookmarkServiceJsDefault = parcelHelpers.interopDefault(_bookmarkServiceJs);
-var _rxjs = require("rxjs");
-class AddRecipeModel {
-    parentElementObserver = new (0, _rxjs.BehaviorSubject)(undefined);
-    viewService;
-    recipeService;
-    recipeObservable = new (0, _rxjs.BehaviorSubject)({});
-    constructor(){
-        this.setViewService((0, _viewServiceJsDefault.default));
-        this.setRecipeService((0, _recipeServiceJsDefault.default));
-    }
-    setViewService(service) {
-        this.viewService = service;
-    }
-    setRecipeService(service) {
-        this.recipeService = service;
-    }
-    setParentElement(parentElement) {
-        this.parentElementObserver.next(parentElement);
-    }
-    uploadRecipe(parentElement, newRecipe) {
-        // 1) render spinner
-        this.viewService.renderSpinner(parentElement);
-        // 2) upload recipe to server
-        this.postRecipe(newRecipe);
-        // 3) success message
-        const message = "Recipe was successfully uploaded :)";
-        this.viewService.renderMessage(parentElement, message);
-        // 4) update bookmarks state
-        this.updateBookmarks();
-    }
-    updateBookmarks() {
-        this.recipeObservable.subscribe((recipe)=>{
-            if (Object.keys(recipe).length > 0) {
-                console.log("recipe from updateBookmarks", recipe);
-                window.history.pushState(null, "", `#${recipe.id}`);
-                const bookmarks = localStorage.getItem("bookmarks") ? JSON.parse(localStorage.getItem("bookmarks")) : [];
-                bookmarks.push(recipe);
-                localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-                (0, _bookmarkServiceJsDefault.default).getBookmarksObservable().next(bookmarks);
+    var O = {};
+    // modern V8 bug
+    var calls = "";
+    var expected = INDICES_SUPPORT ? "dgimsy" : "gimsy";
+    var addGetter = function(key, chr) {
+        // eslint-disable-next-line es/no-object-defineproperty -- safe
+        Object.defineProperty(O, key, {
+            get: function() {
+                calls += chr;
+                return true;
             }
         });
+    };
+    var pairs = {
+        dotAll: "s",
+        global: "g",
+        ignoreCase: "i",
+        multiline: "m",
+        sticky: "y"
+    };
+    if (INDICES_SUPPORT) pairs.hasIndices = "d";
+    for(var key in pairs)addGetter(key, pairs[key]);
+    // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+    var result = Object.getOwnPropertyDescriptor(RegExpPrototype, "flags").get.call(O);
+    return result !== expected || calls !== expected;
+});
+// `RegExp.prototype.flags` getter
+// https://tc39.es/ecma262/#sec-get-regexp.prototype.flags
+if (FORCED) defineBuiltInAccessor(RegExpPrototype, "flags", {
+    configurable: true,
+    get: regExpFlags
+});
+
+},{"../internals/global":"i8HOC","../internals/descriptors":"92ZIi","../internals/define-built-in-accessor":"592rH","../internals/regexp-flags":"9bz1x","../internals/fails":"hL6D2"}],"i8HOC":[function(require,module,exports) {
+var global = arguments[3];
+var check = function(it) {
+    return it && it.Math == Math && it;
+};
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+module.exports = // eslint-disable-next-line es/no-global-this -- safe
+check(typeof globalThis == "object" && globalThis) || check(typeof window == "object" && window) || // eslint-disable-next-line no-restricted-globals -- safe
+check(typeof self == "object" && self) || check(typeof global == "object" && global) || // eslint-disable-next-line no-new-func -- fallback
+function() {
+    return this;
+}() || Function("return this")();
+
+},{}],"92ZIi":[function(require,module,exports) {
+var fails = require("../internals/fails");
+// Detect IE8's incomplete defineProperty implementation
+module.exports = !fails(function() {
+    // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+    return Object.defineProperty({}, 1, {
+        get: function() {
+            return 7;
+        }
+    })[1] != 7;
+});
+
+},{"../internals/fails":"hL6D2"}],"hL6D2":[function(require,module,exports) {
+module.exports = function(exec) {
+    try {
+        return !!exec();
+    } catch (error) {
+        return true;
     }
-    postRecipe(newRecipe) {
-        try {
-            const ingredients = Object.entries(newRecipe).filter((entry)=>entry[0].startsWith("ingredient") && entry[1] !== "").map((ing)=>{
-                // const ingArr = ing[1].replaceAll(' ', '').split(',');
-                const ingArr = ing[1].split(",").map((el)=>el.trim());
-                if (ingArr.length !== 3) throw new Error("Wrong ingredient format! Please use the correct format :)");
-                const [quantity, unit, description] = ingArr;
-                return {
-                    quantity: quantity ? +quantity : null,
-                    unit,
-                    description
-                };
+};
+
+},{}],"592rH":[function(require,module,exports) {
+var makeBuiltIn = require("../internals/make-built-in");
+var defineProperty = require("../internals/object-define-property");
+module.exports = function(target, name, descriptor) {
+    if (descriptor.get) makeBuiltIn(descriptor.get, name, {
+        getter: true
+    });
+    if (descriptor.set) makeBuiltIn(descriptor.set, name, {
+        setter: true
+    });
+    return defineProperty.f(target, name, descriptor);
+};
+
+},{"../internals/make-built-in":"cTB4k","../internals/object-define-property":"iJR4w"}],"cTB4k":[function(require,module,exports) {
+var fails = require("../internals/fails");
+var isCallable = require("../internals/is-callable");
+var hasOwn = require("../internals/has-own-property");
+var DESCRIPTORS = require("../internals/descriptors");
+var CONFIGURABLE_FUNCTION_NAME = require("../internals/function-name").CONFIGURABLE;
+var inspectSource = require("../internals/inspect-source");
+var InternalStateModule = require("../internals/internal-state");
+var enforceInternalState = InternalStateModule.enforce;
+var getInternalState = InternalStateModule.get;
+// eslint-disable-next-line es/no-object-defineproperty -- safe
+var defineProperty = Object.defineProperty;
+var CONFIGURABLE_LENGTH = DESCRIPTORS && !fails(function() {
+    return defineProperty(function() {}, "length", {
+        value: 8
+    }).length !== 8;
+});
+var TEMPLATE = String(String).split("String");
+var makeBuiltIn = module.exports = function(value, name, options) {
+    if (String(name).slice(0, 7) === "Symbol(") name = "[" + String(name).replace(/^Symbol\(([^)]*)\)/, "$1") + "]";
+    if (options && options.getter) name = "get " + name;
+    if (options && options.setter) name = "set " + name;
+    if (!hasOwn(value, "name") || CONFIGURABLE_FUNCTION_NAME && value.name !== name) {
+        if (DESCRIPTORS) defineProperty(value, "name", {
+            value: name,
+            configurable: true
+        });
+        else value.name = name;
+    }
+    if (CONFIGURABLE_LENGTH && options && hasOwn(options, "arity") && value.length !== options.arity) defineProperty(value, "length", {
+        value: options.arity
+    });
+    try {
+        if (options && hasOwn(options, "constructor") && options.constructor) {
+            if (DESCRIPTORS) defineProperty(value, "prototype", {
+                writable: false
             });
-            const recipe = {
-                title: newRecipe.title,
-                source_url: newRecipe.sourceUrl,
-                image_url: newRecipe.image,
-                publisher: newRecipe.publisher,
-                cooking_time: +newRecipe.cookingTime,
-                servings: +newRecipe.servings,
-                ingredients
+        } else if (value.prototype) value.prototype = undefined;
+    } catch (error) {}
+    var state = enforceInternalState(value);
+    if (!hasOwn(state, "source")) state.source = TEMPLATE.join(typeof name == "string" ? name : "");
+    return value;
+};
+// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+// eslint-disable-next-line no-extend-native -- required
+Function.prototype.toString = makeBuiltIn(function toString() {
+    return isCallable(this) && getInternalState(this).source || inspectSource(this);
+}, "toString");
+
+},{"../internals/fails":"hL6D2","../internals/is-callable":"l3Kyn","../internals/has-own-property":"gC2Q5","../internals/descriptors":"92ZIi","../internals/function-name":"l6Kgd","../internals/inspect-source":"9jh7O","../internals/internal-state":"7AMlF"}],"l3Kyn":[function(require,module,exports) {
+var $documentAll = require("../internals/document-all");
+var documentAll = $documentAll.all;
+// `IsCallable` abstract operation
+// https://tc39.es/ecma262/#sec-iscallable
+module.exports = $documentAll.IS_HTMLDDA ? function(argument) {
+    return typeof argument == "function" || argument === documentAll;
+} : function(argument) {
+    return typeof argument == "function";
+};
+
+},{"../internals/document-all":"5MHqB"}],"5MHqB":[function(require,module,exports) {
+var documentAll = typeof document == "object" && document.all;
+// https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot
+var IS_HTMLDDA = typeof documentAll == "undefined" && documentAll !== undefined;
+module.exports = {
+    all: documentAll,
+    IS_HTMLDDA: IS_HTMLDDA
+};
+
+},{}],"gC2Q5":[function(require,module,exports) {
+var uncurryThis = require("../internals/function-uncurry-this");
+var toObject = require("../internals/to-object");
+var hasOwnProperty = uncurryThis({}.hasOwnProperty);
+// `HasOwnProperty` abstract operation
+// https://tc39.es/ecma262/#sec-hasownproperty
+// eslint-disable-next-line es/no-object-hasown -- safe
+module.exports = Object.hasOwn || function hasOwn(it, key) {
+    return hasOwnProperty(toObject(it), key);
+};
+
+},{"../internals/function-uncurry-this":"7GlkT","../internals/to-object":"5cb35"}],"7GlkT":[function(require,module,exports) {
+var classofRaw = require("../internals/classof-raw");
+var uncurryThisRaw = require("../internals/function-uncurry-this-raw");
+module.exports = function(fn) {
+    // Nashorn bug:
+    //   https://github.com/zloirock/core-js/issues/1128
+    //   https://github.com/zloirock/core-js/issues/1130
+    if (classofRaw(fn) === "Function") return uncurryThisRaw(fn);
+};
+
+},{"../internals/classof-raw":"bdfmm","../internals/function-uncurry-this-raw":"bAiTz"}],"bdfmm":[function(require,module,exports) {
+var uncurryThisRaw = require("../internals/function-uncurry-this-raw");
+var toString = uncurryThisRaw({}.toString);
+var stringSlice = uncurryThisRaw("".slice);
+module.exports = function(it) {
+    return stringSlice(toString(it), 8, -1);
+};
+
+},{"../internals/function-uncurry-this-raw":"bAiTz"}],"bAiTz":[function(require,module,exports) {
+var NATIVE_BIND = require("../internals/function-bind-native");
+var FunctionPrototype = Function.prototype;
+var call = FunctionPrototype.call;
+var uncurryThisWithBind = NATIVE_BIND && FunctionPrototype.bind.bind(call, call);
+module.exports = NATIVE_BIND ? uncurryThisWithBind : function(fn) {
+    return function() {
+        return call.apply(fn, arguments);
+    };
+};
+
+},{"../internals/function-bind-native":"i16Dq"}],"i16Dq":[function(require,module,exports) {
+var fails = require("../internals/fails");
+module.exports = !fails(function() {
+    // eslint-disable-next-line es/no-function-prototype-bind -- safe
+    var test = (function() {}).bind();
+    // eslint-disable-next-line no-prototype-builtins -- safe
+    return typeof test != "function" || test.hasOwnProperty("prototype");
+});
+
+},{"../internals/fails":"hL6D2"}],"5cb35":[function(require,module,exports) {
+var requireObjectCoercible = require("../internals/require-object-coercible");
+var $Object = Object;
+// `ToObject` abstract operation
+// https://tc39.es/ecma262/#sec-toobject
+module.exports = function(argument) {
+    return $Object(requireObjectCoercible(argument));
+};
+
+},{"../internals/require-object-coercible":"fOR0B"}],"fOR0B":[function(require,module,exports) {
+var isNullOrUndefined = require("../internals/is-null-or-undefined");
+var $TypeError = TypeError;
+// `RequireObjectCoercible` abstract operation
+// https://tc39.es/ecma262/#sec-requireobjectcoercible
+module.exports = function(it) {
+    if (isNullOrUndefined(it)) throw $TypeError("Can't call method on " + it);
+    return it;
+};
+
+},{"../internals/is-null-or-undefined":"gM5ar"}],"gM5ar":[function(require,module,exports) {
+// we can't use just `it == null` since of `document.all` special case
+// https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot-aec
+module.exports = function(it) {
+    return it === null || it === undefined;
+};
+
+},{}],"l6Kgd":[function(require,module,exports) {
+var DESCRIPTORS = require("../internals/descriptors");
+var hasOwn = require("../internals/has-own-property");
+var FunctionPrototype = Function.prototype;
+// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+var getDescriptor = DESCRIPTORS && Object.getOwnPropertyDescriptor;
+var EXISTS = hasOwn(FunctionPrototype, "name");
+// additional protection from minified / mangled / dropped function names
+var PROPER = EXISTS && (function something() {}).name === "something";
+var CONFIGURABLE = EXISTS && (!DESCRIPTORS || DESCRIPTORS && getDescriptor(FunctionPrototype, "name").configurable);
+module.exports = {
+    EXISTS: EXISTS,
+    PROPER: PROPER,
+    CONFIGURABLE: CONFIGURABLE
+};
+
+},{"../internals/descriptors":"92ZIi","../internals/has-own-property":"gC2Q5"}],"9jh7O":[function(require,module,exports) {
+var uncurryThis = require("../internals/function-uncurry-this");
+var isCallable = require("../internals/is-callable");
+var store = require("../internals/shared-store");
+var functionToString = uncurryThis(Function.toString);
+// this helper broken in `core-js@3.4.1-3.4.4`, so we can't use `shared` helper
+if (!isCallable(store.inspectSource)) store.inspectSource = function(it) {
+    return functionToString(it);
+};
+module.exports = store.inspectSource;
+
+},{"../internals/function-uncurry-this":"7GlkT","../internals/is-callable":"l3Kyn","../internals/shared-store":"l4ncH"}],"l4ncH":[function(require,module,exports) {
+var global = require("../internals/global");
+var defineGlobalProperty = require("../internals/define-global-property");
+var SHARED = "__core-js_shared__";
+var store = global[SHARED] || defineGlobalProperty(SHARED, {});
+module.exports = store;
+
+},{"../internals/global":"i8HOC","../internals/define-global-property":"ggjnO"}],"ggjnO":[function(require,module,exports) {
+var global = require("../internals/global");
+// eslint-disable-next-line es/no-object-defineproperty -- safe
+var defineProperty = Object.defineProperty;
+module.exports = function(key, value) {
+    try {
+        defineProperty(global, key, {
+            value: value,
+            configurable: true,
+            writable: true
+        });
+    } catch (error) {
+        global[key] = value;
+    }
+    return value;
+};
+
+},{"../internals/global":"i8HOC"}],"7AMlF":[function(require,module,exports) {
+var NATIVE_WEAK_MAP = require("../internals/weak-map-basic-detection");
+var global = require("../internals/global");
+var isObject = require("../internals/is-object");
+var createNonEnumerableProperty = require("../internals/create-non-enumerable-property");
+var hasOwn = require("../internals/has-own-property");
+var shared = require("../internals/shared-store");
+var sharedKey = require("../internals/shared-key");
+var hiddenKeys = require("../internals/hidden-keys");
+var OBJECT_ALREADY_INITIALIZED = "Object already initialized";
+var TypeError = global.TypeError;
+var WeakMap = global.WeakMap;
+var set, get, has;
+var enforce = function(it) {
+    return has(it) ? get(it) : set(it, {});
+};
+var getterFor = function(TYPE) {
+    return function(it) {
+        var state;
+        if (!isObject(it) || (state = get(it)).type !== TYPE) throw TypeError("Incompatible receiver, " + TYPE + " required");
+        return state;
+    };
+};
+if (NATIVE_WEAK_MAP || shared.state) {
+    var store = shared.state || (shared.state = new WeakMap());
+    /* eslint-disable no-self-assign -- prototype methods protection */ store.get = store.get;
+    store.has = store.has;
+    store.set = store.set;
+    /* eslint-enable no-self-assign -- prototype methods protection */ set = function(it, metadata) {
+        if (store.has(it)) throw TypeError(OBJECT_ALREADY_INITIALIZED);
+        metadata.facade = it;
+        store.set(it, metadata);
+        return metadata;
+    };
+    get = function(it) {
+        return store.get(it) || {};
+    };
+    has = function(it) {
+        return store.has(it);
+    };
+} else {
+    var STATE = sharedKey("state");
+    hiddenKeys[STATE] = true;
+    set = function(it, metadata) {
+        if (hasOwn(it, STATE)) throw TypeError(OBJECT_ALREADY_INITIALIZED);
+        metadata.facade = it;
+        createNonEnumerableProperty(it, STATE, metadata);
+        return metadata;
+    };
+    get = function(it) {
+        return hasOwn(it, STATE) ? it[STATE] : {};
+    };
+    has = function(it) {
+        return hasOwn(it, STATE);
+    };
+}
+module.exports = {
+    set: set,
+    get: get,
+    has: has,
+    enforce: enforce,
+    getterFor: getterFor
+};
+
+},{"../internals/weak-map-basic-detection":"2PZTl","../internals/global":"i8HOC","../internals/is-object":"Z0pBo","../internals/create-non-enumerable-property":"8CL42","../internals/has-own-property":"gC2Q5","../internals/shared-store":"l4ncH","../internals/shared-key":"eAjGz","../internals/hidden-keys":"661m4"}],"2PZTl":[function(require,module,exports) {
+var global = require("../internals/global");
+var isCallable = require("../internals/is-callable");
+var WeakMap = global.WeakMap;
+module.exports = isCallable(WeakMap) && /native code/.test(String(WeakMap));
+
+},{"../internals/global":"i8HOC","../internals/is-callable":"l3Kyn"}],"Z0pBo":[function(require,module,exports) {
+var isCallable = require("../internals/is-callable");
+var $documentAll = require("../internals/document-all");
+var documentAll = $documentAll.all;
+module.exports = $documentAll.IS_HTMLDDA ? function(it) {
+    return typeof it == "object" ? it !== null : isCallable(it) || it === documentAll;
+} : function(it) {
+    return typeof it == "object" ? it !== null : isCallable(it);
+};
+
+},{"../internals/is-callable":"l3Kyn","../internals/document-all":"5MHqB"}],"8CL42":[function(require,module,exports) {
+var DESCRIPTORS = require("../internals/descriptors");
+var definePropertyModule = require("../internals/object-define-property");
+var createPropertyDescriptor = require("../internals/create-property-descriptor");
+module.exports = DESCRIPTORS ? function(object, key, value) {
+    return definePropertyModule.f(object, key, createPropertyDescriptor(1, value));
+} : function(object, key, value) {
+    object[key] = value;
+    return object;
+};
+
+},{"../internals/descriptors":"92ZIi","../internals/object-define-property":"iJR4w","../internals/create-property-descriptor":"1lpav"}],"iJR4w":[function(require,module,exports) {
+var DESCRIPTORS = require("../internals/descriptors");
+var IE8_DOM_DEFINE = require("../internals/ie8-dom-define");
+var V8_PROTOTYPE_DEFINE_BUG = require("../internals/v8-prototype-define-bug");
+var anObject = require("../internals/an-object");
+var toPropertyKey = require("../internals/to-property-key");
+var $TypeError = TypeError;
+// eslint-disable-next-line es/no-object-defineproperty -- safe
+var $defineProperty = Object.defineProperty;
+// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+var ENUMERABLE = "enumerable";
+var CONFIGURABLE = "configurable";
+var WRITABLE = "writable";
+// `Object.defineProperty` method
+// https://tc39.es/ecma262/#sec-object.defineproperty
+exports.f = DESCRIPTORS ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O, P, Attributes) {
+    anObject(O);
+    P = toPropertyKey(P);
+    anObject(Attributes);
+    if (typeof O === "function" && P === "prototype" && "value" in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {
+        var current = $getOwnPropertyDescriptor(O, P);
+        if (current && current[WRITABLE]) {
+            O[P] = Attributes.value;
+            Attributes = {
+                configurable: CONFIGURABLE in Attributes ? Attributes[CONFIGURABLE] : current[CONFIGURABLE],
+                enumerable: ENUMERABLE in Attributes ? Attributes[ENUMERABLE] : current[ENUMERABLE],
+                writable: false
             };
-            // POST request
-            // return from(AJAX(`${API_URL}?key=${process.env.FORKIFY_API_KEY}`, recipe));
-            (0, _rxjs.from)((0, _helpersJs.AJAX)(`${(0, _configJs.API_URL)}?key=${"b1f8f5d1-f59d-4444-b99c-a12bb1d2ff02"}`, recipe)).subscribe((data)=>{
-                console.log(data);
-                // update recipe state
-                this.recipeObservable.next((0, _helpersJs.createRecipeObject)(data));
-            });
-        } catch (error) {
-            throw error;
         }
     }
-}
-exports.default = new AddRecipeModel();
+    return $defineProperty(O, P, Attributes);
+} : $defineProperty : function defineProperty(O, P, Attributes) {
+    anObject(O);
+    P = toPropertyKey(P);
+    anObject(Attributes);
+    if (IE8_DOM_DEFINE) try {
+        return $defineProperty(O, P, Attributes);
+    } catch (error) {}
+    if ("get" in Attributes || "set" in Attributes) throw $TypeError("Accessors not supported");
+    if ("value" in Attributes) O[P] = Attributes.value;
+    return O;
+};
 
-},{"../../helpers.js":"hGI1E","../../config.js":"k5Hzs","../../services/ui-services/viewService.js":"a8rEx","../../services/ui-services/recipeService.js":"9WBB5","../../services/bookmarkService.js":"jj733","rxjs":"lLy7s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hGI1E":[function(require,module,exports) {
+},{"../internals/descriptors":"92ZIi","../internals/ie8-dom-define":"qS9uN","../internals/v8-prototype-define-bug":"ka1Un","../internals/an-object":"4isCr","../internals/to-property-key":"5XWKd"}],"qS9uN":[function(require,module,exports) {
+var DESCRIPTORS = require("../internals/descriptors");
+var fails = require("../internals/fails");
+var createElement = require("../internals/document-create-element");
+// Thanks to IE8 for its funny defineProperty
+module.exports = !DESCRIPTORS && !fails(function() {
+    // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+    return Object.defineProperty(createElement("div"), "a", {
+        get: function() {
+            return 7;
+        }
+    }).a != 7;
+});
+
+},{"../internals/descriptors":"92ZIi","../internals/fails":"hL6D2","../internals/document-create-element":"4bOHl"}],"4bOHl":[function(require,module,exports) {
+var global = require("../internals/global");
+var isObject = require("../internals/is-object");
+var document = global.document;
+// typeof document.createElement is 'object' in old IE
+var EXISTS = isObject(document) && isObject(document.createElement);
+module.exports = function(it) {
+    return EXISTS ? document.createElement(it) : {};
+};
+
+},{"../internals/global":"i8HOC","../internals/is-object":"Z0pBo"}],"ka1Un":[function(require,module,exports) {
+var DESCRIPTORS = require("../internals/descriptors");
+var fails = require("../internals/fails");
+// V8 ~ Chrome 36-
+// https://bugs.chromium.org/p/v8/issues/detail?id=3334
+module.exports = DESCRIPTORS && fails(function() {
+    // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+    return Object.defineProperty(function() {}, "prototype", {
+        value: 42,
+        writable: false
+    }).prototype != 42;
+});
+
+},{"../internals/descriptors":"92ZIi","../internals/fails":"hL6D2"}],"4isCr":[function(require,module,exports) {
+var isObject = require("../internals/is-object");
+var $String = String;
+var $TypeError = TypeError;
+// `Assert: Type(argument) is Object`
+module.exports = function(argument) {
+    if (isObject(argument)) return argument;
+    throw $TypeError($String(argument) + " is not an object");
+};
+
+},{"../internals/is-object":"Z0pBo"}],"5XWKd":[function(require,module,exports) {
+var toPrimitive = require("../internals/to-primitive");
+var isSymbol = require("../internals/is-symbol");
+// `ToPropertyKey` abstract operation
+// https://tc39.es/ecma262/#sec-topropertykey
+module.exports = function(argument) {
+    var key = toPrimitive(argument, "string");
+    return isSymbol(key) ? key : key + "";
+};
+
+},{"../internals/to-primitive":"a2mK1","../internals/is-symbol":"4aV4F"}],"a2mK1":[function(require,module,exports) {
+var call = require("../internals/function-call");
+var isObject = require("../internals/is-object");
+var isSymbol = require("../internals/is-symbol");
+var getMethod = require("../internals/get-method");
+var ordinaryToPrimitive = require("../internals/ordinary-to-primitive");
+var wellKnownSymbol = require("../internals/well-known-symbol");
+var $TypeError = TypeError;
+var TO_PRIMITIVE = wellKnownSymbol("toPrimitive");
+// `ToPrimitive` abstract operation
+// https://tc39.es/ecma262/#sec-toprimitive
+module.exports = function(input, pref) {
+    if (!isObject(input) || isSymbol(input)) return input;
+    var exoticToPrim = getMethod(input, TO_PRIMITIVE);
+    var result;
+    if (exoticToPrim) {
+        if (pref === undefined) pref = "default";
+        result = call(exoticToPrim, input, pref);
+        if (!isObject(result) || isSymbol(result)) return result;
+        throw $TypeError("Can't convert object to primitive value");
+    }
+    if (pref === undefined) pref = "number";
+    return ordinaryToPrimitive(input, pref);
+};
+
+},{"../internals/function-call":"d7JlP","../internals/is-object":"Z0pBo","../internals/is-symbol":"4aV4F","../internals/get-method":"9Zfiw","../internals/ordinary-to-primitive":"7MME2","../internals/well-known-symbol":"gTwyA"}],"d7JlP":[function(require,module,exports) {
+var NATIVE_BIND = require("../internals/function-bind-native");
+var call = Function.prototype.call;
+module.exports = NATIVE_BIND ? call.bind(call) : function() {
+    return call.apply(call, arguments);
+};
+
+},{"../internals/function-bind-native":"i16Dq"}],"4aV4F":[function(require,module,exports) {
+var getBuiltIn = require("../internals/get-built-in");
+var isCallable = require("../internals/is-callable");
+var isPrototypeOf = require("../internals/object-is-prototype-of");
+var USE_SYMBOL_AS_UID = require("../internals/use-symbol-as-uid");
+var $Object = Object;
+module.exports = USE_SYMBOL_AS_UID ? function(it) {
+    return typeof it == "symbol";
+} : function(it) {
+    var $Symbol = getBuiltIn("Symbol");
+    return isCallable($Symbol) && isPrototypeOf($Symbol.prototype, $Object(it));
+};
+
+},{"../internals/get-built-in":"6ZUSY","../internals/is-callable":"l3Kyn","../internals/object-is-prototype-of":"3jtKQ","../internals/use-symbol-as-uid":"2Ye8Q"}],"6ZUSY":[function(require,module,exports) {
+var global = require("../internals/global");
+var isCallable = require("../internals/is-callable");
+var aFunction = function(argument) {
+    return isCallable(argument) ? argument : undefined;
+};
+module.exports = function(namespace, method) {
+    return arguments.length < 2 ? aFunction(global[namespace]) : global[namespace] && global[namespace][method];
+};
+
+},{"../internals/global":"i8HOC","../internals/is-callable":"l3Kyn"}],"3jtKQ":[function(require,module,exports) {
+var uncurryThis = require("../internals/function-uncurry-this");
+module.exports = uncurryThis({}.isPrototypeOf);
+
+},{"../internals/function-uncurry-this":"7GlkT"}],"2Ye8Q":[function(require,module,exports) {
+/* eslint-disable es/no-symbol -- required for testing */ var NATIVE_SYMBOL = require("../internals/symbol-constructor-detection");
+module.exports = NATIVE_SYMBOL && !Symbol.sham && typeof Symbol.iterator == "symbol";
+
+},{"../internals/symbol-constructor-detection":"8KyTD"}],"8KyTD":[function(require,module,exports) {
+/* eslint-disable es/no-symbol -- required for testing */ var V8_VERSION = require("../internals/engine-v8-version");
+var fails = require("../internals/fails");
+// eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
+module.exports = !!Object.getOwnPropertySymbols && !fails(function() {
+    var symbol = Symbol();
+    // Chrome 38 Symbol has incorrect toString conversion
+    // `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances
+    return !String(symbol) || !(Object(symbol) instanceof Symbol) || // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
+    !Symbol.sham && V8_VERSION && V8_VERSION < 41;
+});
+
+},{"../internals/engine-v8-version":"bjFlO","../internals/fails":"hL6D2"}],"bjFlO":[function(require,module,exports) {
+var global = require("../internals/global");
+var userAgent = require("../internals/engine-user-agent");
+var process = global.process;
+var Deno = global.Deno;
+var versions = process && process.versions || Deno && Deno.version;
+var v8 = versions && versions.v8;
+var match, version;
+if (v8) {
+    match = v8.split(".");
+    // in old Chrome, versions of V8 isn't V8 = Chrome / 10
+    // but their correct versions are not interesting for us
+    version = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);
+}
+// BrowserFS NodeJS `process` polyfill incorrectly set `.v8` to `0.0`
+// so check `userAgent` even if `.v8` exists, but 0
+if (!version && userAgent) {
+    match = userAgent.match(/Edge\/(\d+)/);
+    if (!match || match[1] >= 74) {
+        match = userAgent.match(/Chrome\/(\d+)/);
+        if (match) version = +match[1];
+    }
+}
+module.exports = version;
+
+},{"../internals/global":"i8HOC","../internals/engine-user-agent":"73xBt"}],"73xBt":[function(require,module,exports) {
+var getBuiltIn = require("../internals/get-built-in");
+module.exports = getBuiltIn("navigator", "userAgent") || "";
+
+},{"../internals/get-built-in":"6ZUSY"}],"9Zfiw":[function(require,module,exports) {
+var aCallable = require("../internals/a-callable");
+var isNullOrUndefined = require("../internals/is-null-or-undefined");
+// `GetMethod` abstract operation
+// https://tc39.es/ecma262/#sec-getmethod
+module.exports = function(V, P) {
+    var func = V[P];
+    return isNullOrUndefined(func) ? undefined : aCallable(func);
+};
+
+},{"../internals/a-callable":"gOMir","../internals/is-null-or-undefined":"gM5ar"}],"gOMir":[function(require,module,exports) {
+var isCallable = require("../internals/is-callable");
+var tryToString = require("../internals/try-to-string");
+var $TypeError = TypeError;
+// `Assert: IsCallable(argument) is true`
+module.exports = function(argument) {
+    if (isCallable(argument)) return argument;
+    throw $TypeError(tryToString(argument) + " is not a function");
+};
+
+},{"../internals/is-callable":"l3Kyn","../internals/try-to-string":"4O7d7"}],"4O7d7":[function(require,module,exports) {
+var $String = String;
+module.exports = function(argument) {
+    try {
+        return $String(argument);
+    } catch (error) {
+        return "Object";
+    }
+};
+
+},{}],"7MME2":[function(require,module,exports) {
+var call = require("../internals/function-call");
+var isCallable = require("../internals/is-callable");
+var isObject = require("../internals/is-object");
+var $TypeError = TypeError;
+// `OrdinaryToPrimitive` abstract operation
+// https://tc39.es/ecma262/#sec-ordinarytoprimitive
+module.exports = function(input, pref) {
+    var fn, val;
+    if (pref === "string" && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;
+    if (isCallable(fn = input.valueOf) && !isObject(val = call(fn, input))) return val;
+    if (pref !== "string" && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;
+    throw $TypeError("Can't convert object to primitive value");
+};
+
+},{"../internals/function-call":"d7JlP","../internals/is-callable":"l3Kyn","../internals/is-object":"Z0pBo"}],"gTwyA":[function(require,module,exports) {
+var global = require("../internals/global");
+var shared = require("../internals/shared");
+var hasOwn = require("../internals/has-own-property");
+var uid = require("../internals/uid");
+var NATIVE_SYMBOL = require("../internals/symbol-constructor-detection");
+var USE_SYMBOL_AS_UID = require("../internals/use-symbol-as-uid");
+var WellKnownSymbolsStore = shared("wks");
+var Symbol = global.Symbol;
+var symbolFor = Symbol && Symbol["for"];
+var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol : Symbol && Symbol.withoutSetter || uid;
+module.exports = function(name) {
+    if (!hasOwn(WellKnownSymbolsStore, name) || !(NATIVE_SYMBOL || typeof WellKnownSymbolsStore[name] == "string")) {
+        var description = "Symbol." + name;
+        if (NATIVE_SYMBOL && hasOwn(Symbol, name)) WellKnownSymbolsStore[name] = Symbol[name];
+        else if (USE_SYMBOL_AS_UID && symbolFor) WellKnownSymbolsStore[name] = symbolFor(description);
+        else WellKnownSymbolsStore[name] = createWellKnownSymbol(description);
+    }
+    return WellKnownSymbolsStore[name];
+};
+
+},{"../internals/global":"i8HOC","../internals/shared":"i1mHK","../internals/has-own-property":"gC2Q5","../internals/uid":"a3SEE","../internals/symbol-constructor-detection":"8KyTD","../internals/use-symbol-as-uid":"2Ye8Q"}],"i1mHK":[function(require,module,exports) {
+var IS_PURE = require("../internals/is-pure");
+var store = require("../internals/shared-store");
+(module.exports = function(key, value) {
+    return store[key] || (store[key] = value !== undefined ? value : {});
+})("versions", []).push({
+    version: "3.26.0",
+    mode: IS_PURE ? "pure" : "global",
+    copyright: "\xa9 2014-2022 Denis Pushkarev (zloirock.ru)",
+    license: "https://github.com/zloirock/core-js/blob/v3.26.0/LICENSE",
+    source: "https://github.com/zloirock/core-js"
+});
+
+},{"../internals/is-pure":"5ZsyC","../internals/shared-store":"l4ncH"}],"5ZsyC":[function(require,module,exports) {
+module.exports = false;
+
+},{}],"a3SEE":[function(require,module,exports) {
+var uncurryThis = require("../internals/function-uncurry-this");
+var id = 0;
+var postfix = Math.random();
+var toString = uncurryThis(1.0.toString);
+module.exports = function(key) {
+    return "Symbol(" + (key === undefined ? "" : key) + ")_" + toString(++id + postfix, 36);
+};
+
+},{"../internals/function-uncurry-this":"7GlkT"}],"1lpav":[function(require,module,exports) {
+module.exports = function(bitmap, value) {
+    return {
+        enumerable: !(bitmap & 1),
+        configurable: !(bitmap & 2),
+        writable: !(bitmap & 4),
+        value: value
+    };
+};
+
+},{}],"eAjGz":[function(require,module,exports) {
+var shared = require("../internals/shared");
+var uid = require("../internals/uid");
+var keys = shared("keys");
+module.exports = function(key) {
+    return keys[key] || (keys[key] = uid(key));
+};
+
+},{"../internals/shared":"i1mHK","../internals/uid":"a3SEE"}],"661m4":[function(require,module,exports) {
+module.exports = {};
+
+},{}],"9bz1x":[function(require,module,exports) {
+"use strict";
+var anObject = require("../internals/an-object");
+// `RegExp.prototype.flags` getter implementation
+// https://tc39.es/ecma262/#sec-get-regexp.prototype.flags
+module.exports = function() {
+    var that = anObject(this);
+    var result = "";
+    if (that.hasIndices) result += "d";
+    if (that.global) result += "g";
+    if (that.ignoreCase) result += "i";
+    if (that.multiline) result += "m";
+    if (that.dotAll) result += "s";
+    if (that.unicode) result += "u";
+    if (that.unicodeSets) result += "v";
+    if (that.sticky) result += "y";
+    return result;
+};
+
+},{"../internals/an-object":"4isCr"}],"49tUX":[function(require,module,exports) {
+// TODO: Remove this module from `core-js@4` since it's split to modules listed below
+require("../modules/web.clear-immediate");
+require("../modules/web.set-immediate");
+
+},{"../modules/web.clear-immediate":"fOGFr","../modules/web.set-immediate":"l7FDS"}],"fOGFr":[function(require,module,exports) {
+var $ = require("../internals/export");
+var global = require("../internals/global");
+var clearImmediate = require("../internals/task").clear;
+// `clearImmediate` method
+// http://w3c.github.io/setImmediate/#si-clearImmediate
+$({
+    global: true,
+    bind: true,
+    enumerable: true,
+    forced: global.clearImmediate !== clearImmediate
+}, {
+    clearImmediate: clearImmediate
+});
+
+},{"../internals/export":"dIGt4","../internals/global":"i8HOC","../internals/task":"7jDg7"}],"dIGt4":[function(require,module,exports) {
+var global = require("../internals/global");
+var getOwnPropertyDescriptor = require("../internals/object-get-own-property-descriptor").f;
+var createNonEnumerableProperty = require("../internals/create-non-enumerable-property");
+var defineBuiltIn = require("../internals/define-built-in");
+var defineGlobalProperty = require("../internals/define-global-property");
+var copyConstructorProperties = require("../internals/copy-constructor-properties");
+var isForced = require("../internals/is-forced");
+/*
+  options.target         - name of the target object
+  options.global         - target is the global object
+  options.stat           - export as static methods of target
+  options.proto          - export as prototype methods of target
+  options.real           - real prototype method for the `pure` version
+  options.forced         - export even if the native feature is available
+  options.bind           - bind methods to the target, required for the `pure` version
+  options.wrap           - wrap constructors to preventing global pollution, required for the `pure` version
+  options.unsafe         - use the simple assignment of property instead of delete + defineProperty
+  options.sham           - add a flag to not completely full polyfills
+  options.enumerable     - export as enumerable property
+  options.dontCallGetSet - prevent calling a getter on target
+  options.name           - the .name of the function if it does not match the key
+*/ module.exports = function(options, source) {
+    var TARGET = options.target;
+    var GLOBAL = options.global;
+    var STATIC = options.stat;
+    var FORCED, target, key, targetProperty, sourceProperty, descriptor;
+    if (GLOBAL) target = global;
+    else if (STATIC) target = global[TARGET] || defineGlobalProperty(TARGET, {});
+    else target = (global[TARGET] || {}).prototype;
+    if (target) for(key in source){
+        sourceProperty = source[key];
+        if (options.dontCallGetSet) {
+            descriptor = getOwnPropertyDescriptor(target, key);
+            targetProperty = descriptor && descriptor.value;
+        } else targetProperty = target[key];
+        FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? "." : "#") + key, options.forced);
+        // contained in target
+        if (!FORCED && targetProperty !== undefined) {
+            if (typeof sourceProperty == typeof targetProperty) continue;
+            copyConstructorProperties(sourceProperty, targetProperty);
+        }
+        // add a flag to not completely full polyfills
+        if (options.sham || targetProperty && targetProperty.sham) createNonEnumerableProperty(sourceProperty, "sham", true);
+        defineBuiltIn(target, key, sourceProperty, options);
+    }
+};
+
+},{"../internals/global":"i8HOC","../internals/object-get-own-property-descriptor":"lk5NI","../internals/create-non-enumerable-property":"8CL42","../internals/define-built-in":"6XwEX","../internals/define-global-property":"ggjnO","../internals/copy-constructor-properties":"9Z12i","../internals/is-forced":"6uTCZ"}],"lk5NI":[function(require,module,exports) {
+var DESCRIPTORS = require("../internals/descriptors");
+var call = require("../internals/function-call");
+var propertyIsEnumerableModule = require("../internals/object-property-is-enumerable");
+var createPropertyDescriptor = require("../internals/create-property-descriptor");
+var toIndexedObject = require("../internals/to-indexed-object");
+var toPropertyKey = require("../internals/to-property-key");
+var hasOwn = require("../internals/has-own-property");
+var IE8_DOM_DEFINE = require("../internals/ie8-dom-define");
+// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+// `Object.getOwnPropertyDescriptor` method
+// https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
+exports.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
+    O = toIndexedObject(O);
+    P = toPropertyKey(P);
+    if (IE8_DOM_DEFINE) try {
+        return $getOwnPropertyDescriptor(O, P);
+    } catch (error) {}
+    if (hasOwn(O, P)) return createPropertyDescriptor(!call(propertyIsEnumerableModule.f, O, P), O[P]);
+};
+
+},{"../internals/descriptors":"92ZIi","../internals/function-call":"d7JlP","../internals/object-property-is-enumerable":"7SuiS","../internals/create-property-descriptor":"1lpav","../internals/to-indexed-object":"jLWwQ","../internals/to-property-key":"5XWKd","../internals/has-own-property":"gC2Q5","../internals/ie8-dom-define":"qS9uN"}],"7SuiS":[function(require,module,exports) {
+"use strict";
+var $propertyIsEnumerable = {}.propertyIsEnumerable;
+// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+// Nashorn ~ JDK8 bug
+var NASHORN_BUG = getOwnPropertyDescriptor && !$propertyIsEnumerable.call({
+    1: 2
+}, 1);
+// `Object.prototype.propertyIsEnumerable` method implementation
+// https://tc39.es/ecma262/#sec-object.prototype.propertyisenumerable
+exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
+    var descriptor = getOwnPropertyDescriptor(this, V);
+    return !!descriptor && descriptor.enumerable;
+} : $propertyIsEnumerable;
+
+},{}],"jLWwQ":[function(require,module,exports) {
+// toObject with fallback for non-array-like ES3 strings
+var IndexedObject = require("../internals/indexed-object");
+var requireObjectCoercible = require("../internals/require-object-coercible");
+module.exports = function(it) {
+    return IndexedObject(requireObjectCoercible(it));
+};
+
+},{"../internals/indexed-object":"kPk5h","../internals/require-object-coercible":"fOR0B"}],"kPk5h":[function(require,module,exports) {
+var uncurryThis = require("../internals/function-uncurry-this");
+var fails = require("../internals/fails");
+var classof = require("../internals/classof-raw");
+var $Object = Object;
+var split = uncurryThis("".split);
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+module.exports = fails(function() {
+    // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
+    // eslint-disable-next-line no-prototype-builtins -- safe
+    return !$Object("z").propertyIsEnumerable(0);
+}) ? function(it) {
+    return classof(it) == "String" ? split(it, "") : $Object(it);
+} : $Object;
+
+},{"../internals/function-uncurry-this":"7GlkT","../internals/fails":"hL6D2","../internals/classof-raw":"bdfmm"}],"6XwEX":[function(require,module,exports) {
+var isCallable = require("../internals/is-callable");
+var definePropertyModule = require("../internals/object-define-property");
+var makeBuiltIn = require("../internals/make-built-in");
+var defineGlobalProperty = require("../internals/define-global-property");
+module.exports = function(O, key, value, options) {
+    if (!options) options = {};
+    var simple = options.enumerable;
+    var name = options.name !== undefined ? options.name : key;
+    if (isCallable(value)) makeBuiltIn(value, name, options);
+    if (options.global) {
+        if (simple) O[key] = value;
+        else defineGlobalProperty(key, value);
+    } else {
+        try {
+            if (!options.unsafe) delete O[key];
+            else if (O[key]) simple = true;
+        } catch (error) {}
+        if (simple) O[key] = value;
+        else definePropertyModule.f(O, key, {
+            value: value,
+            enumerable: false,
+            configurable: !options.nonConfigurable,
+            writable: !options.nonWritable
+        });
+    }
+    return O;
+};
+
+},{"../internals/is-callable":"l3Kyn","../internals/object-define-property":"iJR4w","../internals/make-built-in":"cTB4k","../internals/define-global-property":"ggjnO"}],"9Z12i":[function(require,module,exports) {
+var hasOwn = require("../internals/has-own-property");
+var ownKeys = require("../internals/own-keys");
+var getOwnPropertyDescriptorModule = require("../internals/object-get-own-property-descriptor");
+var definePropertyModule = require("../internals/object-define-property");
+module.exports = function(target, source, exceptions) {
+    var keys = ownKeys(source);
+    var defineProperty = definePropertyModule.f;
+    var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
+    for(var i = 0; i < keys.length; i++){
+        var key = keys[i];
+        if (!hasOwn(target, key) && !(exceptions && hasOwn(exceptions, key))) defineProperty(target, key, getOwnPropertyDescriptor(source, key));
+    }
+};
+
+},{"../internals/has-own-property":"gC2Q5","../internals/own-keys":"1CX1A","../internals/object-get-own-property-descriptor":"lk5NI","../internals/object-define-property":"iJR4w"}],"1CX1A":[function(require,module,exports) {
+var getBuiltIn = require("../internals/get-built-in");
+var uncurryThis = require("../internals/function-uncurry-this");
+var getOwnPropertyNamesModule = require("../internals/object-get-own-property-names");
+var getOwnPropertySymbolsModule = require("../internals/object-get-own-property-symbols");
+var anObject = require("../internals/an-object");
+var concat = uncurryThis([].concat);
+// all object keys, includes non-enumerable and symbols
+module.exports = getBuiltIn("Reflect", "ownKeys") || function ownKeys(it) {
+    var keys = getOwnPropertyNamesModule.f(anObject(it));
+    var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
+    return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys;
+};
+
+},{"../internals/get-built-in":"6ZUSY","../internals/function-uncurry-this":"7GlkT","../internals/object-get-own-property-names":"fjY04","../internals/object-get-own-property-symbols":"4DWO3","../internals/an-object":"4isCr"}],"fjY04":[function(require,module,exports) {
+var internalObjectKeys = require("../internals/object-keys-internal");
+var enumBugKeys = require("../internals/enum-bug-keys");
+var hiddenKeys = enumBugKeys.concat("length", "prototype");
+// `Object.getOwnPropertyNames` method
+// https://tc39.es/ecma262/#sec-object.getownpropertynames
+// eslint-disable-next-line es/no-object-getownpropertynames -- safe
+exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+    return internalObjectKeys(O, hiddenKeys);
+};
+
+},{"../internals/object-keys-internal":"hl5T1","../internals/enum-bug-keys":"9RnJm"}],"hl5T1":[function(require,module,exports) {
+var uncurryThis = require("../internals/function-uncurry-this");
+var hasOwn = require("../internals/has-own-property");
+var toIndexedObject = require("../internals/to-indexed-object");
+var indexOf = require("../internals/array-includes").indexOf;
+var hiddenKeys = require("../internals/hidden-keys");
+var push = uncurryThis([].push);
+module.exports = function(object, names) {
+    var O = toIndexedObject(object);
+    var i = 0;
+    var result = [];
+    var key;
+    for(key in O)!hasOwn(hiddenKeys, key) && hasOwn(O, key) && push(result, key);
+    // Don't enum bug & hidden keys
+    while(names.length > i)if (hasOwn(O, key = names[i++])) ~indexOf(result, key) || push(result, key);
+    return result;
+};
+
+},{"../internals/function-uncurry-this":"7GlkT","../internals/has-own-property":"gC2Q5","../internals/to-indexed-object":"jLWwQ","../internals/array-includes":"n5IsC","../internals/hidden-keys":"661m4"}],"n5IsC":[function(require,module,exports) {
+var toIndexedObject = require("../internals/to-indexed-object");
+var toAbsoluteIndex = require("../internals/to-absolute-index");
+var lengthOfArrayLike = require("../internals/length-of-array-like");
+// `Array.prototype.{ indexOf, includes }` methods implementation
+var createMethod = function(IS_INCLUDES) {
+    return function($this, el, fromIndex) {
+        var O = toIndexedObject($this);
+        var length = lengthOfArrayLike(O);
+        var index = toAbsoluteIndex(fromIndex, length);
+        var value;
+        // Array#includes uses SameValueZero equality algorithm
+        // eslint-disable-next-line no-self-compare -- NaN check
+        if (IS_INCLUDES && el != el) while(length > index){
+            value = O[index++];
+            // eslint-disable-next-line no-self-compare -- NaN check
+            if (value != value) return true;
+        // Array#indexOf ignores holes, Array#includes - not
+        }
+        else for(; length > index; index++){
+            if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;
+        }
+        return !IS_INCLUDES && -1;
+    };
+};
+module.exports = {
+    // `Array.prototype.includes` method
+    // https://tc39.es/ecma262/#sec-array.prototype.includes
+    includes: createMethod(true),
+    // `Array.prototype.indexOf` method
+    // https://tc39.es/ecma262/#sec-array.prototype.indexof
+    indexOf: createMethod(false)
+};
+
+},{"../internals/to-indexed-object":"jLWwQ","../internals/to-absolute-index":"5yh27","../internals/length-of-array-like":"lY4mS"}],"5yh27":[function(require,module,exports) {
+var toIntegerOrInfinity = require("../internals/to-integer-or-infinity");
+var max = Math.max;
+var min = Math.min;
+// Helper for a popular repeating case of the spec:
+// Let integer be ? ToInteger(index).
+// If integer < 0, let result be max((length + integer), 0); else let result be min(integer, length).
+module.exports = function(index, length) {
+    var integer = toIntegerOrInfinity(index);
+    return integer < 0 ? max(integer + length, 0) : min(integer, length);
+};
+
+},{"../internals/to-integer-or-infinity":"kLXGe"}],"kLXGe":[function(require,module,exports) {
+var trunc = require("../internals/math-trunc");
+// `ToIntegerOrInfinity` abstract operation
+// https://tc39.es/ecma262/#sec-tointegerorinfinity
+module.exports = function(argument) {
+    var number = +argument;
+    // eslint-disable-next-line no-self-compare -- NaN check
+    return number !== number || number === 0 ? 0 : trunc(number);
+};
+
+},{"../internals/math-trunc":"7O8gb"}],"7O8gb":[function(require,module,exports) {
+var ceil = Math.ceil;
+var floor = Math.floor;
+// `Math.trunc` method
+// https://tc39.es/ecma262/#sec-math.trunc
+// eslint-disable-next-line es/no-math-trunc -- safe
+module.exports = Math.trunc || function trunc(x) {
+    var n = +x;
+    return (n > 0 ? floor : ceil)(n);
+};
+
+},{}],"lY4mS":[function(require,module,exports) {
+var toLength = require("../internals/to-length");
+// `LengthOfArrayLike` abstract operation
+// https://tc39.es/ecma262/#sec-lengthofarraylike
+module.exports = function(obj) {
+    return toLength(obj.length);
+};
+
+},{"../internals/to-length":"fU04N"}],"fU04N":[function(require,module,exports) {
+var toIntegerOrInfinity = require("../internals/to-integer-or-infinity");
+var min = Math.min;
+// `ToLength` abstract operation
+// https://tc39.es/ecma262/#sec-tolength
+module.exports = function(argument) {
+    return argument > 0 ? min(toIntegerOrInfinity(argument), 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
+};
+
+},{"../internals/to-integer-or-infinity":"kLXGe"}],"9RnJm":[function(require,module,exports) {
+// IE8- don't enum bug keys
+module.exports = [
+    "constructor",
+    "hasOwnProperty",
+    "isPrototypeOf",
+    "propertyIsEnumerable",
+    "toLocaleString",
+    "toString",
+    "valueOf"
+];
+
+},{}],"4DWO3":[function(require,module,exports) {
+// eslint-disable-next-line es/no-object-getownpropertysymbols -- safe
+exports.f = Object.getOwnPropertySymbols;
+
+},{}],"6uTCZ":[function(require,module,exports) {
+var fails = require("../internals/fails");
+var isCallable = require("../internals/is-callable");
+var replacement = /#|\.prototype\./;
+var isForced = function(feature, detection) {
+    var value = data[normalize(feature)];
+    return value == POLYFILL ? true : value == NATIVE ? false : isCallable(detection) ? fails(detection) : !!detection;
+};
+var normalize = isForced.normalize = function(string) {
+    return String(string).replace(replacement, ".").toLowerCase();
+};
+var data = isForced.data = {};
+var NATIVE = isForced.NATIVE = "N";
+var POLYFILL = isForced.POLYFILL = "P";
+module.exports = isForced;
+
+},{"../internals/fails":"hL6D2","../internals/is-callable":"l3Kyn"}],"7jDg7":[function(require,module,exports) {
+var global = require("../internals/global");
+var apply = require("../internals/function-apply");
+var bind = require("../internals/function-bind-context");
+var isCallable = require("../internals/is-callable");
+var hasOwn = require("../internals/has-own-property");
+var fails = require("../internals/fails");
+var html = require("../internals/html");
+var arraySlice = require("../internals/array-slice");
+var createElement = require("../internals/document-create-element");
+var validateArgumentsLength = require("../internals/validate-arguments-length");
+var IS_IOS = require("../internals/engine-is-ios");
+var IS_NODE = require("../internals/engine-is-node");
+var set = global.setImmediate;
+var clear = global.clearImmediate;
+var process = global.process;
+var Dispatch = global.Dispatch;
+var Function = global.Function;
+var MessageChannel = global.MessageChannel;
+var String = global.String;
+var counter = 0;
+var queue = {};
+var ONREADYSTATECHANGE = "onreadystatechange";
+var $location, defer, channel, port;
+try {
+    // Deno throws a ReferenceError on `location` access without `--location` flag
+    $location = global.location;
+} catch (error) {}
+var run = function(id) {
+    if (hasOwn(queue, id)) {
+        var fn = queue[id];
+        delete queue[id];
+        fn();
+    }
+};
+var runner = function(id) {
+    return function() {
+        run(id);
+    };
+};
+var listener = function(event) {
+    run(event.data);
+};
+var post = function(id) {
+    // old engines have not location.origin
+    global.postMessage(String(id), $location.protocol + "//" + $location.host);
+};
+// Node.js 0.9+ & IE10+ has setImmediate, otherwise:
+if (!set || !clear) {
+    set = function setImmediate(handler) {
+        validateArgumentsLength(arguments.length, 1);
+        var fn = isCallable(handler) ? handler : Function(handler);
+        var args = arraySlice(arguments, 1);
+        queue[++counter] = function() {
+            apply(fn, undefined, args);
+        };
+        defer(counter);
+        return counter;
+    };
+    clear = function clearImmediate(id) {
+        delete queue[id];
+    };
+    // Node.js 0.8-
+    if (IS_NODE) defer = function(id) {
+        process.nextTick(runner(id));
+    };
+    else if (Dispatch && Dispatch.now) defer = function(id) {
+        Dispatch.now(runner(id));
+    };
+    else if (MessageChannel && !IS_IOS) {
+        channel = new MessageChannel();
+        port = channel.port2;
+        channel.port1.onmessage = listener;
+        defer = bind(port.postMessage, port);
+    // Browsers with postMessage, skip WebWorkers
+    // IE8 has postMessage, but it's sync & typeof its postMessage is 'object'
+    } else if (global.addEventListener && isCallable(global.postMessage) && !global.importScripts && $location && $location.protocol !== "file:" && !fails(post)) {
+        defer = post;
+        global.addEventListener("message", listener, false);
+    // IE8-
+    } else if (ONREADYSTATECHANGE in createElement("script")) defer = function(id) {
+        html.appendChild(createElement("script"))[ONREADYSTATECHANGE] = function() {
+            html.removeChild(this);
+            run(id);
+        };
+    };
+    else defer = function(id) {
+        setTimeout(runner(id), 0);
+    };
+}
+module.exports = {
+    set: set,
+    clear: clear
+};
+
+},{"../internals/global":"i8HOC","../internals/function-apply":"148ka","../internals/function-bind-context":"7vpmS","../internals/is-callable":"l3Kyn","../internals/has-own-property":"gC2Q5","../internals/fails":"hL6D2","../internals/html":"2pze4","../internals/array-slice":"RsFXo","../internals/document-create-element":"4bOHl","../internals/validate-arguments-length":"b9O3D","../internals/engine-is-ios":"bzGah","../internals/engine-is-node":"2Jcp4"}],"148ka":[function(require,module,exports) {
+var NATIVE_BIND = require("../internals/function-bind-native");
+var FunctionPrototype = Function.prototype;
+var apply = FunctionPrototype.apply;
+var call = FunctionPrototype.call;
+// eslint-disable-next-line es/no-reflect -- safe
+module.exports = typeof Reflect == "object" && Reflect.apply || (NATIVE_BIND ? call.bind(apply) : function() {
+    return call.apply(apply, arguments);
+});
+
+},{"../internals/function-bind-native":"i16Dq"}],"7vpmS":[function(require,module,exports) {
+var uncurryThis = require("../internals/function-uncurry-this");
+var aCallable = require("../internals/a-callable");
+var NATIVE_BIND = require("../internals/function-bind-native");
+var bind = uncurryThis(uncurryThis.bind);
+// optional / simple context binding
+module.exports = function(fn, that) {
+    aCallable(fn);
+    return that === undefined ? fn : NATIVE_BIND ? bind(fn, that) : function() {
+        return fn.apply(that, arguments);
+    };
+};
+
+},{"../internals/function-uncurry-this":"7GlkT","../internals/a-callable":"gOMir","../internals/function-bind-native":"i16Dq"}],"2pze4":[function(require,module,exports) {
+var getBuiltIn = require("../internals/get-built-in");
+module.exports = getBuiltIn("document", "documentElement");
+
+},{"../internals/get-built-in":"6ZUSY"}],"RsFXo":[function(require,module,exports) {
+var uncurryThis = require("../internals/function-uncurry-this");
+module.exports = uncurryThis([].slice);
+
+},{"../internals/function-uncurry-this":"7GlkT"}],"b9O3D":[function(require,module,exports) {
+var $TypeError = TypeError;
+module.exports = function(passed, required) {
+    if (passed < required) throw $TypeError("Not enough arguments");
+    return passed;
+};
+
+},{}],"bzGah":[function(require,module,exports) {
+var userAgent = require("../internals/engine-user-agent");
+module.exports = /(?:ipad|iphone|ipod).*applewebkit/i.test(userAgent);
+
+},{"../internals/engine-user-agent":"73xBt"}],"2Jcp4":[function(require,module,exports) {
+var classof = require("../internals/classof-raw");
+var global = require("../internals/global");
+module.exports = classof(global.process) == "process";
+
+},{"../internals/classof-raw":"bdfmm","../internals/global":"i8HOC"}],"l7FDS":[function(require,module,exports) {
+var $ = require("../internals/export");
+var global = require("../internals/global");
+var setImmediate = require("../internals/task").set;
+// `setImmediate` method
+// http://w3c.github.io/setImmediate/#si-setImmediate
+$({
+    global: true,
+    bind: true,
+    enumerable: true,
+    forced: global.setImmediate !== setImmediate
+}, {
+    setImmediate: setImmediate
+});
+
+},{"../internals/export":"dIGt4","../internals/global":"i8HOC","../internals/task":"7jDg7"}],"5qllG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AJAX", ()=>AJAX);
@@ -853,7 +1790,9 @@ parcelHelpers.export(exports, "getJSON", ()=>getJSON);
 parcelHelpers.export(exports, "sendJSON", ()=>sendJSON);
 parcelHelpers.export(exports, "createRecipeObject", ()=>createRecipeObject);
 parcelHelpers.export(exports, "waitForElm", ()=>waitForElm);
-var _config = require("./config");
+parcelHelpers.export(exports, "readHTML", ()=>readHTML);
+parcelHelpers.export(exports, "implement", ()=>implement);
+var _config = require("../config/config");
 const timeout = function(s) {
     return new Promise(function(_, reject) {
         setTimeout(function() {
@@ -957,8 +1896,43 @@ const waitForElm = function(selector) {
         subtree: true
     });
 });
+const readHTML = async function(file) {
+    const response = await fetch(file);
+    const text = await response.text();
+    return text;
+};
+const implement = function(baseClass, interfaces) {
+    class Component extends baseClass {
+        constructor(){
+            super();
+            this.setInterfaces(interfaces);
+            this.checkIfImplemented();
+        }
+        setInterfaces(interfaces) {
+            this.interfaces = interfaces;
+        }
+        getPrototype() {
+            return Object.getPrototypeOf(this);
+        }
+        getPrototypeMethods() {
+            return Object.getOwnPropertyNames(this.getPrototype());
+        }
+        getClassName() {
+            return this.getPrototype().constructor.name;
+        }
+        checkIfImplemented() {
+            this.interfaces.forEach((subInterface)=>{
+                let proto = subInterface.prototype;
+                Object.getOwnPropertyNames(proto).forEach((methodName)=>{
+                    if (methodName !== "constructor" && typeof proto[methodName] === "function" && !this.getPrototypeMethods().includes(methodName)) console.warn("WARNING! Method " + methodName + " is not implemented in " + this.getClassName());
+                });
+            });
+        }
+    }
+    return Component;
+};
 
-},{"./config":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"k5Hzs":[function(require,module,exports) {
+},{"../config/config":"jJZSp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jJZSp":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "API_URL", ()=>API_URL);
@@ -1002,10 +1976,251 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"a8rEx":[function(require,module,exports) {
+},{}],"5erAA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _iconsSvg = require("url:../../../img/icons.svg");
+parcelHelpers.export(exports, "AfterViewInit", ()=>AfterViewInit);
+var _baseInterfaceJs = require("./baseInterface.js");
+class AfterViewInit extends (0, _baseInterfaceJs.BaseInterface) {
+    constructor(){
+        super();
+    }
+    afterViewInit() {
+        this._WARNING("afterViewInit");
+    }
+}
+
+},{"./baseInterface.js":"k2ggA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"k2ggA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "BaseInterface", ()=>BaseInterface);
+class BaseInterface {
+    constructor(){}
+    _WARNING(fname = "unknown method") {
+        console.warn(`${fname} is not implemented`);
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3RayG":[function(require,module,exports) {
+// classes
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "declarations", ()=>declarations);
+var _addRecipeViewJs = require("./components/add-recipe-view/add-recipe-view.js");
+var _copyrightJs = require("./components/copyright/copyright.js");
+var _navBarJs = require("./components/nav-bar/nav-bar.js");
+var _recipeViewJs = require("./components/recipe-view/recipe-view.js");
+var _resultViewJs = require("./components/result-view/result-view.js");
+var _searchBarJs = require("./components/search-bar/search-bar.js");
+// htmls
+var _addRecipeViewHtml = require("url:./components/add-recipe-view/add-recipe-view.html");
+var _addRecipeViewHtmlDefault = parcelHelpers.interopDefault(_addRecipeViewHtml);
+var _copyrightHtml = require("url:./components/copyright/copyright.html");
+var _copyrightHtmlDefault = parcelHelpers.interopDefault(_copyrightHtml);
+var _navBarHtml = require("url:./components/nav-bar/nav-bar.html");
+var _navBarHtmlDefault = parcelHelpers.interopDefault(_navBarHtml);
+var _resultViewHtml = require("url:./components/result-view/result-view.html");
+var _resultViewHtmlDefault = parcelHelpers.interopDefault(_resultViewHtml);
+var _searchBarHtml = require("url:./components/search-bar/search-bar.html");
+var _searchBarHtmlDefault = parcelHelpers.interopDefault(_searchBarHtml);
+const declarations = [
+    {
+        class: (0, _addRecipeViewJs.AddRecipeView),
+        selector: "app-add-recipe-view",
+        html: (0, _addRecipeViewHtmlDefault.default)
+    },
+    {
+        class: (0, _searchBarJs.SearchBar),
+        selector: "app-search-bar",
+        html: (0, _searchBarHtmlDefault.default)
+    },
+    {
+        class: (0, _navBarJs.NavBar),
+        selector: "app-nav-bar",
+        html: (0, _navBarHtmlDefault.default)
+    },
+    {
+        class: (0, _resultViewJs.ResultView),
+        selector: "app-result-view",
+        html: (0, _resultViewHtmlDefault.default)
+    },
+    {
+        class: (0, _copyrightJs.Copyright),
+        selector: "app-copyright",
+        html: (0, _copyrightHtmlDefault.default)
+    },
+    {
+        class: (0, _recipeViewJs.RecipeView),
+        selector: "app-recipe-view",
+        html: ""
+    }
+];
+
+},{"./components/add-recipe-view/add-recipe-view.js":"kxH2z","./components/copyright/copyright.js":"fDVIE","./components/nav-bar/nav-bar.js":"aiGzk","./components/recipe-view/recipe-view.js":"2cIog","./components/result-view/result-view.js":"9LITd","./components/search-bar/search-bar.js":"4NZ96","url:./components/add-recipe-view/add-recipe-view.html":"9YGka","url:./components/copyright/copyright.html":"i0ZPn","url:./components/nav-bar/nav-bar.html":"2xfbi","url:./components/result-view/result-view.html":"h336z","url:./components/search-bar/search-bar.html":"G4tcQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kxH2z":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "AddRecipeView", ()=>AddRecipeView);
+var _addRecipeModel = require("./add-recipe-model");
+var _addRecipeModelDefault = parcelHelpers.interopDefault(_addRecipeModel);
+var _utils = require("../../services/utils");
+var _rxjs = require("rxjs");
+var _afterViewInit = require("../../../app/interfaces/afterViewInit");
+class AddRecipeView extends (0, _utils.implement)(HTMLElement, [
+    (0, _afterViewInit.AfterViewInit)
+]) {
+    _parentElement;
+    _message;
+    _window;
+    _overlay;
+    _btnOpen;
+    _btnClose;
+    model = (0, _addRecipeModelDefault.default);
+    constructor(){
+        super();
+    }
+    resetInnerHTML() {
+        this._parentElement.innerHTML = this._innerHTML;
+    }
+    afterViewInit() {
+        (0, _utils.waitForElm)(".overlay").then(()=>{
+            // waiting for the element from the nav-bar component
+            (0, _utils.waitForElm)(".nav__btn--add-recipe").then(()=>{
+                const parentElement = document.querySelector(".upload");
+                this._parentElement = parentElement;
+                if (!this._innerHTML) this._innerHTML = parentElement.innerHTML;
+                this._message = "Recipe was successfully uploaded :)";
+                this._window = document.querySelector(".add-recipe-window");
+                this._overlay = document.querySelector(".overlay");
+                this._btnOpen = document.querySelector(".nav__btn--add-recipe");
+                this._btnClose = document.querySelector(".btn--close-modal");
+                (this.model && parentElement) ?? this.model.setParentElement(parentElement);
+                this.addHandlerOpenWindow();
+                this.addHandlerCloseWindow();
+                this.addHandlerUploadRecipe(parentElement, this.model);
+            });
+        });
+    }
+    addHandlerOpenWindow() {
+        (0, _rxjs.fromEvent)(this._btnOpen, "click").subscribe(()=>{
+            this._innerHTML && this.resetInnerHTML();
+            this._overlay.classList.remove("hidden");
+            this._window.classList.remove("hidden");
+        });
+    }
+    addHandlerCloseWindow() {
+        (0, _rxjs.fromEvent)(this._btnClose, "click").subscribe(()=>{
+            this._overlay.classList.add("hidden");
+            this._window.classList.add("hidden");
+        });
+    }
+    addHandlerUploadRecipe(parentElement, model) {
+        (0, _rxjs.fromEvent)(parentElement, "submit").subscribe((e)=>{
+            // 1) stop form from submitting
+            e.preventDefault();
+            const originalHTML = parentElement.innerHTML;
+            // this._innerHTML = originalHTML;
+            // 2) construct FormData object
+            const dataArr = [
+                ...new FormData(parentElement)
+            ];
+            const data = Object.fromEntries(dataArr);
+            // 3) upload recipe
+            // 3.1) render spinner while waiting for response
+            // 3.2) post recipe to server; update current recipe state
+            // 3.3) render success message
+            // 3.4) update bookmarks view
+            model.uploadRecipe(parentElement, data);
+            // 4) close the form window
+            // reset form and re-activate event listeners
+            setTimeout(()=>{
+                this._overlay.classList.add("hidden");
+                this._window.classList.add("hidden");
+                this.afterViewInit();
+            }, 1500);
+        });
+    }
+}
+
+},{"./add-recipe-model":"8ONhG","../../services/utils":"5qllG","rxjs":"lLy7s","../../../app/interfaces/afterViewInit":"5erAA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8ONhG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _utils = require("../../services/utils");
+var _configJs = require("../../config/config.js");
+var _viewServiceJs = require("../../services/ui-services/viewService.js");
+var _viewServiceJsDefault = parcelHelpers.interopDefault(_viewServiceJs);
+var _bookmarkServiceJs = require("../../services/bookmarkService.js");
+var _bookmarkServiceJsDefault = parcelHelpers.interopDefault(_bookmarkServiceJs);
+var _rxjs = require("rxjs");
+class AddRecipeModel {
+    parentElementObserver = new (0, _rxjs.BehaviorSubject)(undefined);
+    recipeObservable = new (0, _rxjs.BehaviorSubject)({});
+    constructor(){}
+    setParentElement(parentElement) {
+        this.parentElementObserver.next(parentElement);
+    }
+    uploadRecipe(parentElement, newRecipe) {
+        // 1) render spinner
+        (0, _viewServiceJsDefault.default).renderSpinner(parentElement);
+        // 2) upload recipe to server
+        this.postRecipe(newRecipe);
+        // 3) success message
+        const message = "Recipe was successfully uploaded :)";
+        (0, _viewServiceJsDefault.default).renderMessage(parentElement, message);
+        // 4) update bookmarks state
+        this.updateBookmarks();
+    }
+    updateBookmarks() {
+        this.recipeObservable.subscribe((recipe)=>{
+            if (Object.keys(recipe).length > 0) {
+                console.log("recipe from updateBookmarks", recipe);
+                window.history.pushState(null, "", `#${recipe.id}`);
+                const bookmarks = localStorage.getItem("bookmarks") ? JSON.parse(localStorage.getItem("bookmarks")) : [];
+                bookmarks.push(recipe);
+                localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+                (0, _bookmarkServiceJsDefault.default).getBookmarksObservable().next(bookmarks);
+            }
+        });
+    }
+    postRecipe(newRecipe) {
+        try {
+            const ingredients = Object.entries(newRecipe).filter((entry)=>entry[0].startsWith("ingredient") && entry[1] !== "").map((ing)=>{
+                // const ingArr = ing[1].replaceAll(' ', '').split(',');
+                const ingArr = ing[1].split(",").map((el)=>el.trim());
+                if (ingArr.length !== 3) throw new Error("Wrong ingredient format! Please use the correct format :)");
+                const [quantity, unit, description] = ingArr;
+                return {
+                    quantity: quantity ? +quantity : null,
+                    unit,
+                    description
+                };
+            });
+            const recipe = {
+                title: newRecipe.title,
+                source_url: newRecipe.sourceUrl,
+                image_url: newRecipe.image,
+                publisher: newRecipe.publisher,
+                cooking_time: +newRecipe.cookingTime,
+                servings: +newRecipe.servings,
+                ingredients
+            };
+            // POST request
+            // return from(AJAX(`${API_URL}?key=${process.env.FORKIFY_API_KEY}`, recipe));
+            (0, _rxjs.from)((0, _utils.AJAX)(`${(0, _configJs.API_URL)}?key=${"b1f8f5d1-f59d-4444-b99c-a12bb1d2ff02"}`, recipe)).subscribe((data)=>{
+                console.log(data);
+                // update recipe state
+                this.recipeObservable.next((0, _utils.createRecipeObject)(data));
+            });
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+exports.default = new AddRecipeModel();
+
+},{"../../services/utils":"5qllG","../../config/config.js":"jJZSp","../../services/ui-services/viewService.js":"gQpF7","../../services/bookmarkService.js":"gVeab","rxjs":"lLy7s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gQpF7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _iconsSvg = require("url:../../../assets/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class ViewService {
     constructor(){}
@@ -1068,8 +2283,8 @@ class ViewService {
 }
 exports.default = new ViewService();
 
-},{"url:../../../img/icons.svg":"gg8PR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gg8PR":[function(require,module,exports) {
-module.exports = require("./helpers/bundle-url").getBundleURL("ixJtV") + "icons.dfd7a6db.svg" + "?" + Date.now();
+},{"url:../../../assets/icons.svg":"iJSFl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iJSFl":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("1mYVm") + "icons.4112406e.svg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
 "use strict";
@@ -1105,362 +2320,7 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"9WBB5":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _iconsSvg = require("url:../../../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-var _fractional = require("fractional");
-class RecipeService {
-    generateRecipeMarkup(recipe) {
-        if (!recipe) return;
-        return `
-    <figure class="recipe__fig">
-      <img src="${recipe.image}" alt="${recipe.title}" class="recipe__img" crossorigin/>
-      <h1 class="recipe__title">
-        <span>${recipe.title}</span>
-      </h1>
-    </figure>
-
-    <div class="recipe__details">
-      <div class="recipe__info">
-        <svg class="recipe__info-icon">
-          <use href="${0, _iconsSvgDefault.default}#icon-clock"></use>
-        </svg>
-        <span class="recipe__info-data recipe__info-data--minutes">${recipe.cookingTime}</span>
-        <span class="recipe__info-text">minutes</span>
-      </div>
-      <div class="recipe__info">
-        <svg class="recipe__info-icon">
-          <use href="${0, _iconsSvgDefault.default}#icon-users"></use>
-        </svg>
-        <span class="recipe__info-data recipe__info-data--people">${recipe.servings}</span>
-        <span class="recipe__info-text">servings</span>
-
-        <div class="recipe__info-buttons">
-          <button class="btn--tiny btn--update-servings" data-update-to="${recipe.servings - 1}">
-            <svg>
-              <use href="${0, _iconsSvgDefault.default}#icon-minus-circle" ></use>
-            </svg>
-          </button>
-          <button class="btn--tiny btn--update-servings" data-update-to="${recipe.servings + 1}">
-            <svg>
-              <use href="${0, _iconsSvgDefault.default}#icon-plus-circle"></use>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="recipe__user-generated ${recipe.key ? "" : "hidden"}">
-        <svg>
-          <use href="${0, _iconsSvgDefault.default}#icon-user"></use>
-        </svg>
-      </div>
-      <button class="btn--round btn--bookmark">
-        <svg class="">
-          <use href="${0, _iconsSvgDefault.default}#icon-bookmark${recipe.bookmarked ? "-fill" : ""}"></use>
-        </svg>
-      </button>
-    </div>
-
-    <div class="recipe__ingredients">
-      <h2 class="heading--2">Recipe ingredients</h2>
-      <ul class="recipe__ingredient-list">
-        ${recipe.ingredients.map(this.generateIngredientsMarkup).join("")}
-      </ul>
-    </div>
-
-    <div class="recipe__directions">
-      <h2 class="heading--2">How to cook it</h2>
-      <p class="recipe__directions-text">
-        This recipe was carefully designed and tested by
-        <span class="recipe__publisher">${recipe.publisher}</span>. Please check out
-        directions at their website.
-      </p>
-      <a
-        class="btn--small recipe__btn"
-        href="${recipe.sourceUrl}"
-        target="_blank"
-      >
-        <span>Directions</span>
-        <svg class="search__icon">
-          <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
-        </svg>
-      </a>
-    </div>
-    `;
-    }
-    generateIngredientsMarkup(ing) {
-        return `
-      <li class="recipe__ingredient">
-        <svg class="recipe__icon">
-          <use href="${0, _iconsSvgDefault.default}#icon-check"></use>
-        </svg>
-        <div class="recipe__quantity">${ing.quantity ? new (0, _fractional.Fraction)(ing.quantity) : ""}</div>
-        <div class="recipe__description">
-          <span class="recipe__unit">${ing.unit ?? ""}</span>
-          ${ing.description}
-        </div>
-      </li>
-    `;
-    }
-}
-exports.default = new RecipeService();
-
-},{"url:../../../img/icons.svg":"gg8PR","fractional":"3SU56","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3SU56":[function(require,module,exports) {
-/*
-fraction.js
-A Javascript fraction library.
-
-Copyright (c) 2009  Erik Garrison <erik@hypervolu.me>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-*/ /* Fractions */ /* 
- *
- * Fraction objects are comprised of a numerator and a denomenator.  These
- * values can be accessed at fraction.numerator and fraction.denomenator.
- *
- * Fractions are always returned and stored in lowest-form normalized format.
- * This is accomplished via Fraction.normalize.
- *
- * The following mathematical operations on fractions are supported:
- *
- * Fraction.equals
- * Fraction.add
- * Fraction.subtract
- * Fraction.multiply
- * Fraction.divide
- *
- * These operations accept both numbers and fraction objects.  (Best results
- * are guaranteed when the input is a fraction object.)  They all return a new
- * Fraction object.
- *
- * Usage:
- *
- * TODO
- *
- */ /*
- * The Fraction constructor takes one of:
- *   an explicit numerator (integer) and denominator (integer),
- *   a string representation of the fraction (string),
- *   or a floating-point number (float)
- *
- * These initialization methods are provided for convenience.  Because of
- * rounding issues the best results will be given when the fraction is
- * constructed from an explicit integer numerator and denomenator, and not a
- * decimal number.
- *
- *
- * e.g. new Fraction(1, 2) --> 1/2
- *      new Fraction('1/2') --> 1/2
- *      new Fraction('2 3/4') --> 11/4  (prints as 2 3/4)
- *
- */ Fraction = function(numerator, denominator) {
-    /* double argument invocation */ if (typeof numerator !== "undefined" && denominator) {
-        if (typeof numerator === "number" && typeof denominator === "number") {
-            this.numerator = numerator;
-            this.denominator = denominator;
-        } else if (typeof numerator === "string" && typeof denominator === "string") {
-            // what are they?
-            // hmm....
-            // assume they are ints?
-            this.numerator = parseInt(numerator);
-            this.denominator = parseInt(denominator);
-        }
-    /* single-argument invocation */ } else if (typeof denominator === "undefined") {
-        num = numerator; // swap variable names for legibility
-        if (typeof num === "number") {
-            this.numerator = num;
-            this.denominator = 1;
-        } else if (typeof num === "string") {
-            var a, b; // hold the first and second part of the fraction, e.g. a = '1' and b = '2/3' in 1 2/3
-            // or a = '2/3' and b = undefined if we are just passed a single-part number
-            var arr = num.split(" ");
-            if (arr[0]) a = arr[0];
-            if (arr[1]) b = arr[1];
-            /* compound fraction e.g. 'A B/C' */ //  if a is an integer ...
-            if (a % 1 === 0 && b && b.match("/")) return new Fraction(a).add(new Fraction(b));
-            else if (a && !b) {
-                /* simple fraction e.g. 'A/B' */ if (typeof a === "string" && a.match("/")) {
-                    // it's not a whole number... it's actually a fraction without a whole part written
-                    var f = a.split("/");
-                    this.numerator = f[0];
-                    this.denominator = f[1];
-                /* string floating point */ } else if (typeof a === "string" && a.match(".")) return new Fraction(parseFloat(a));
-                else {
-                    this.numerator = parseInt(a);
-                    this.denominator = 1;
-                }
-            } else return undefined; // could not parse
-        }
-    }
-    this.normalize();
-};
-Fraction.prototype.clone = function() {
-    return new Fraction(this.numerator, this.denominator);
-};
-/* pretty-printer, converts fractions into whole numbers and fractions */ Fraction.prototype.toString = function() {
-    if (this.denominator === "NaN") return "NaN";
-    var wholepart = this.numerator / this.denominator > 0 ? Math.floor(this.numerator / this.denominator) : Math.ceil(this.numerator / this.denominator);
-    var numerator = this.numerator % this.denominator;
-    var denominator = this.denominator;
-    var result = [];
-    if (wholepart != 0) result.push(wholepart);
-    if (numerator != 0) result.push((wholepart === 0 ? numerator : Math.abs(numerator)) + "/" + denominator);
-    return result.length > 0 ? result.join(" ") : 0;
-};
-/* destructively rescale the fraction by some integral factor */ Fraction.prototype.rescale = function(factor) {
-    this.numerator *= factor;
-    this.denominator *= factor;
-    return this;
-};
-Fraction.prototype.add = function(b) {
-    var a = this.clone();
-    if (b instanceof Fraction) b = b.clone();
-    else b = new Fraction(b);
-    td = a.denominator;
-    a.rescale(b.denominator);
-    b.rescale(td);
-    a.numerator += b.numerator;
-    return a.normalize();
-};
-Fraction.prototype.subtract = function(b) {
-    var a = this.clone();
-    if (b instanceof Fraction) b = b.clone(); // we scale our argument destructively, so clone
-    else b = new Fraction(b);
-    td = a.denominator;
-    a.rescale(b.denominator);
-    b.rescale(td);
-    a.numerator -= b.numerator;
-    return a.normalize();
-};
-Fraction.prototype.multiply = function(b) {
-    var a = this.clone();
-    if (b instanceof Fraction) {
-        a.numerator *= b.numerator;
-        a.denominator *= b.denominator;
-    } else if (typeof b === "number") a.numerator *= b;
-    else return a.multiply(new Fraction(b));
-    return a.normalize();
-};
-Fraction.prototype.divide = function(b) {
-    var a = this.clone();
-    if (b instanceof Fraction) {
-        a.numerator *= b.denominator;
-        a.denominator *= b.numerator;
-    } else if (typeof b === "number") a.denominator *= b;
-    else return a.divide(new Fraction(b));
-    return a.normalize();
-};
-Fraction.prototype.equals = function(b) {
-    if (!(b instanceof Fraction)) b = new Fraction(b);
-    // fractions that are equal should have equal normalized forms
-    var a = this.clone().normalize();
-    var b = b.clone().normalize();
-    return a.numerator === b.numerator && a.denominator === b.denominator;
-};
-/* Utility functions */ /* Destructively normalize the fraction to its smallest representation. 
- * e.g. 4/16 -> 1/4, 14/28 -> 1/2, etc.
- * This is called after all math ops.
- */ Fraction.prototype.normalize = function() {
-    var isFloat = function(n) {
-        return typeof n === "number" && (n > 0 && n % 1 > 0 && n % 1 < 1 || n < 0 && n % -1 < 0 && n % -1 > -1);
-    };
-    var roundToPlaces = function(n, places) {
-        if (!places) return Math.round(n);
-        else {
-            var scalar = Math.pow(10, places);
-            return Math.round(n * scalar) / scalar;
-        }
-    };
-    return function() {
-        // XXX hackish.  Is there a better way to address this issue?
-        //
-        /* first check if we have decimals, and if we do eliminate them
-         * multiply by the 10 ^ number of decimal places in the number
-         * round the number to nine decimal places
-         * to avoid js floating point funnies
-         */ if (isFloat(this.denominator)) {
-            var rounded = roundToPlaces(this.denominator, 9);
-            var scaleup = Math.pow(10, rounded.toString().split(".")[1].length);
-            this.denominator = Math.round(this.denominator * scaleup); // this !!! should be a whole number
-            //this.numerator *= scaleup;
-            this.numerator *= scaleup;
-        }
-        if (isFloat(this.numerator)) {
-            var rounded = roundToPlaces(this.numerator, 9);
-            var scaleup = Math.pow(10, rounded.toString().split(".")[1].length);
-            this.numerator = Math.round(this.numerator * scaleup); // this !!! should be a whole number
-            //this.numerator *= scaleup;
-            this.denominator *= scaleup;
-        }
-        var gcf = Fraction.gcf(this.numerator, this.denominator);
-        this.numerator /= gcf;
-        this.denominator /= gcf;
-        if (this.numerator < 0 && this.denominator < 0 || this.numerator > 0 && this.denominator < 0) {
-            this.numerator *= -1;
-            this.denominator *= -1;
-        }
-        return this;
-    };
-}();
-/* Takes two numbers and returns their greatest common factor.
- */ Fraction.gcf = function(a, b) {
-    var common_factors = [];
-    var fa = Fraction.primeFactors(a);
-    var fb = Fraction.primeFactors(b);
-    // for each factor in fa
-    // if it's also in fb
-    // put it into the common factors
-    fa.forEach(function(factor) {
-        var i = fb.indexOf(factor);
-        if (i >= 0) {
-            common_factors.push(factor);
-            fb.splice(i, 1); // remove from fb
-        }
-    });
-    if (common_factors.length === 0) return 1;
-    var gcf = function() {
-        var r = common_factors[0];
-        var i;
-        for(i = 1; i < common_factors.length; i++)r = r * common_factors[i];
-        return r;
-    }();
-    return gcf;
-};
-// Adapted from: 
-// http://www.btinternet.com/~se16/js/factor.htm
-Fraction.primeFactors = function(n) {
-    var num1 = Math.abs(n);
-    var factors = [];
-    var _factor = 2; // first potential prime factor
-    while(_factor * _factor <= num1)if (num1 % _factor === 0) {
-        factors.push(_factor); // so keep it
-        num1 = num1 / _factor; // and divide our search point by it
-    } else _factor++; // and increment
-    if (num1 != 1) factors.push(num1); //    so it too should be recorded
-    return factors; // Return the prime factors
-};
-module.exports.Fraction = Fraction;
-
-},{}],"jj733":[function(require,module,exports) {
+},{}],"gVeab":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _rxjs = require("rxjs");
@@ -3802,43 +4662,63 @@ function mapOneOrManyArgs(fn) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3g9B8":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fDVIE":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _bookmarkModel = require("./bookmark-model");
-var _bookmarkModelDefault = parcelHelpers.interopDefault(_bookmarkModel);
-class BookMarkView extends HTMLElement {
-    model;
+parcelHelpers.export(exports, "Copyright", ()=>Copyright);
+var _utils = require("../../services/utils");
+var _afterViewInit = require("../../../app/interfaces/afterViewInit");
+class Copyright extends (0, _utils.implement)(HTMLElement, [
+    (0, _afterViewInit.AfterViewInit)
+]) {
     constructor(){
         super();
-        this.setModel((0, _bookmarkModelDefault.default));
     }
-    setModel(model) {
-        this.model = model;
+    afterViewInit() {}
+}
+
+},{"../../services/utils":"5qllG","../../../app/interfaces/afterViewInit":"5erAA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aiGzk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "NavBar", ()=>NavBar);
+var _bookmarkView = require("./bookmark-view/bookmark-view");
+var _utils = require("../../services/utils");
+var _afterViewInit = require("../../../app/interfaces/afterViewInit");
+customElements.define("app-bookmark-view", (0, _bookmarkView.BookMarkView));
+class NavBar extends (0, _utils.implement)(HTMLElement, [
+    (0, _afterViewInit.AfterViewInit)
+]) {
+    constructor(){
+        super();
+    }
+    afterViewInit() {}
+}
+
+},{"./bookmark-view/bookmark-view":"5d9i4","../../services/utils":"5qllG","../../../app/interfaces/afterViewInit":"5erAA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5d9i4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "BookMarkView", ()=>BookMarkView);
+var _bookmarkModel = require("./bookmark-model");
+var _bookmarkModelDefault = parcelHelpers.interopDefault(_bookmarkModel);
+var _utils = require("../../../services/utils");
+var _bookmarkViewHtml = require("url:./bookmark-view.html");
+var _bookmarkViewHtmlDefault = parcelHelpers.interopDefault(_bookmarkViewHtml);
+class BookMarkView extends HTMLElement {
+    model = (0, _bookmarkModelDefault.default);
+    constructor(){
+        super();
     }
     connectedCallback() {
-        this.innerHTML = `
-    <ul class="bookmarks__list">
-      <div class="message">
-        <div>
-          <svg>
-            <use href="src/img/icons.svg#icon-smile"></use>
-          </svg>
-        </div>
-        <p>
-          No bookmarks yet. Find a nice recipe and bookmark it :)
-        </p>
-      </div>
-    </ul>
-    `;
-        this.model.setParentElement(this.querySelector(".bookmarks__list"));
-        // the parent element is valid after setting the innerHTML
-        this.model.renderBookmarks();
+        (0, _utils.readHTML)((0, _bookmarkViewHtmlDefault.default)).then((html)=>{
+            this.innerHTML = html;
+            this.model.setParentElement(this.querySelector(".bookmarks__list"));
+            // the parent element is valid after setting the innerHTML
+            this.model.renderBookmarks();
+        });
     }
 }
-exports.default = BookMarkView;
 
-},{"./bookmark-model":"iNua1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iNua1":[function(require,module,exports) {
+},{"./bookmark-model":"5eqbH","../../../services/utils":"5qllG","url:./bookmark-view.html":"iqcPc","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5eqbH":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewService = require("../../../services/ui-services/viewService");
@@ -3848,7 +4728,6 @@ var _previewServiceDefault = parcelHelpers.interopDefault(_previewService);
 var _bookmarkService = require("../../../services/bookmarkService");
 var _bookmarkServiceDefault = parcelHelpers.interopDefault(_bookmarkService);
 class BookMarkModel {
-    viewService;
     _parentElement;
     _errorMessage = "No bookmarks yet. Find a nice recipe and bookmark it :)";
     constructor(){
@@ -3879,10 +4758,10 @@ class BookMarkModel {
 }
 exports.default = new BookMarkModel();
 
-},{"../../../services/ui-services/viewService":"a8rEx","../../../services/ui-services/previewService":"f8Ogl","../../../services/bookmarkService":"jj733","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f8Ogl":[function(require,module,exports) {
+},{"../../../services/ui-services/viewService":"gQpF7","../../../services/ui-services/previewService":"aoFmf","../../../services/bookmarkService":"gVeab","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aoFmf":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _iconsSvg = require("url:../../../img/icons.svg");
+var _iconsSvg = require("url:../../../assets/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class PreviewService {
     constructor(){}
@@ -3911,159 +4790,28 @@ class PreviewService {
 }
 exports.default = new PreviewService();
 
-},{"url:../../../img/icons.svg":"gg8PR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"j4IVx":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-class CopyRight extends HTMLElement {
-    constructor(){
-        super();
-    }
-    connectedCallback() {
-        this.innerHTML = `
-    <p class="copyright">
-      &copy; Copyright by
-      <a
-        class="twitter-link"
-        target="_blank"
-        href="https://twitter.com/jonasschmedtman"
-        >Jonas Schmedtmann</a
-      >. Code rearranged by 
-      <a
-        class="twitter-link"
-        target="_blank"
-        href=""
-        >Guan Xin Wang</a
-      >
-    </p>
-    `;
-    }
-}
-exports.default = CopyRight;
+},{"url:../../../assets/icons.svg":"iJSFl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iqcPc":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("1mYVm") + "bookmark-view.d9162adc.html" + "?" + Date.now();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cx2ih":[function(require,module,exports) {
+},{"./helpers/bundle-url":"lgJ39"}],"2cIog":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _iconsSvg = require("url:../../../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-var _bookmarkView = require("./bookmark-view/bookmark-view");
-var _bookmarkViewDefault = parcelHelpers.interopDefault(_bookmarkView);
-customElements.define("app-bookmark-view", (0, _bookmarkViewDefault.default));
-class NavBar extends HTMLElement {
-    constructor(){
-        super();
-    }
-    connectedCallback() {
-        this.innerHTML = `
-    <nav>
-      <ul class="nav__list">
-        <li class="nav__item">
-          <button class="nav__btn nav__btn--add-recipe">
-            <svg class="nav__icon">
-              <use href="${0, _iconsSvgDefault.default}#icon-edit"></use>
-            </svg>
-            <span>Add recipe</span>
-          </button>
-        </li>
-        <li class="nav__item">
-          <button class="nav__btn nav__btn--bookmarks">
-            <svg class="nav__icon">
-              <use href="${0, _iconsSvgDefault.default}#icon-bookmark"></use>
-            </svg>
-            <span>Bookmarks</span>
-          </button>
-          <!-- bookmarks component -->
-          <app-bookmark-view class="bookmarks"></app-bookmark-view>
-        </li>
-      </ul>
-    </nav>
-    `;
-    }
-}
-exports.default = NavBar;
-
-},{"url:../../../img/icons.svg":"gg8PR","./bookmark-view/bookmark-view":"3g9B8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4eRvL":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _paginationModel = require("./pagination-model");
-var _paginationModelDefault = parcelHelpers.interopDefault(_paginationModel);
-class PaginationView extends HTMLElement {
-    _parentElement;
-    model;
-    constructor(){
-        super();
-    }
-    connectedCallback() {
-        this.innerHTML = `
-    <div class="pagination"></div>
-    `;
-        this._parentElement = document.querySelector(".pagination");
-        this.setModel((0, _paginationModelDefault.default));
-    }
-    setModel(model) {
-        this.model = model;
-    }
-}
-exports.default = PaginationView;
-
-},{"./pagination-model":"eS4wH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eS4wH":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _iconsSvg = require("url:../../../../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-var _config = require("../../../config");
-class PaginationModel {
-    constructor(){}
-    generateMarkup(results, page = (0, _config.INITIAL_PAGE)) {
-        if (!results) return "";
-        const curPage = page;
-        const numPages = Math.ceil(results.length / (0, _config.RES_PER_PAGE));
-        // Page 1, and there are other pages
-        if (curPage === 1 && numPages > 1) return this.generateNextMarkup(curPage);
-        // Last page
-        if (curPage === numPages && numPages > 1) return this.generatePrevMarkup(curPage);
-        // Other page
-        if (curPage < numPages) return `${this.generatePrevMarkup(curPage)}${this.generateNextMarkup(curPage)}`;
-        // Page 1, and there are NO other pages
-        return "";
-    }
-    generateNextMarkup(curPage) {
-        return `
-      <button data-goto="${curPage + 1}" class="btn--inline pagination__btn--next">
-        <span>Page ${curPage + 1}</span>
-        <svg class="search__icon">
-          <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
-        </svg>
-      </button>
-    `;
-    }
-    generatePrevMarkup(curPage) {
-        return `
-      <button data-goto="${curPage - 1}" class="btn--inline pagination__btn--prev">
-        <svg class="search__icon">
-          <use href="${0, _iconsSvgDefault.default}#icon-arrow-left"></use>
-        </svg>
-        <span>Page ${curPage - 1}</span>
-      </button>
-    `;
-    }
-}
-exports.default = new PaginationModel();
-
-},{"url:../../../../img/icons.svg":"gg8PR","../../../config":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gHASO":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "RecipeView", ()=>RecipeView);
 var _recipeModel = require("./recipe-model");
 var _recipeModelDefault = parcelHelpers.interopDefault(_recipeModel);
-var _iconsSvg = require("url:../../../img/icons.svg");
+var _iconsSvg = require("url:../../../assets/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 var _rxjs = require("rxjs");
-class RecipeView extends HTMLElement {
+var _utils = require("../../services/utils");
+var _afterViewInit = require("../../../app/interfaces/afterViewInit");
+class RecipeView extends (0, _utils.implement)(HTMLElement, [
+    (0, _afterViewInit.AfterViewInit)
+]) {
     _errorMessage = "We could not find that recipe. Please try another one!";
     _message = "Start by searching for a recipe or an ingredient. Have fun!";
-    model;
+    model = (0, _recipeModelDefault.default);
     constructor(){
         super();
-        this.setModel((0, _recipeModelDefault.default));
     }
     connectedCallback() {
         this.innerHTML = window.location.hash ? `
@@ -4084,6 +4832,9 @@ class RecipeView extends HTMLElement {
         <p>Start by searching for a recipe or an ingredient. Have fun!</p>
       </div>
     `;
+        this.afterViewInit();
+    }
+    afterViewInit() {
         this.model.setParentElement(this);
         this.addHandlerAddBookmark(this, this.model);
         this.addHandlerUpdateServings(this, this.model);
@@ -4111,13 +4862,12 @@ class RecipeView extends HTMLElement {
         });
     }
 }
-exports.default = RecipeView;
 
-},{"./recipe-model":"5SMoR","url:../../../img/icons.svg":"gg8PR","rxjs":"lLy7s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5SMoR":[function(require,module,exports) {
+},{"./recipe-model":"gF8mZ","url:../../../assets/icons.svg":"iJSFl","rxjs":"lLy7s","../../services/utils":"5qllG","../../../app/interfaces/afterViewInit":"5erAA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gF8mZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _rxjs = require("rxjs");
-var _helpersJs = require("../../helpers.js");
+var _utils = require("../../services/utils");
 var _viewService = require("../../services/ui-services/viewService");
 var _viewServiceDefault = parcelHelpers.interopDefault(_viewService);
 var _queryService = require("../../services/queryService");
@@ -4126,42 +4876,13 @@ var _bookmarkServiceJs = require("../../services/bookmarkService.js");
 var _bookmarkServiceJsDefault = parcelHelpers.interopDefault(_bookmarkServiceJs);
 var _recipeServiceJs = require("../../services/ui-services/recipeService.js");
 var _recipeServiceJsDefault = parcelHelpers.interopDefault(_recipeServiceJs);
-var _helpers = require("../../helpers");
 class RecipeModel {
-    viewService;
-    queryService;
-    bookmarkService;
-    recipeService;
     _parentElement;
     recipeObservable = new (0, _rxjs.BehaviorSubject)(null);
     bookmarks = [];
-    constructor(){
-        this.setViewService((0, _viewServiceDefault.default));
-        this.setQueryService((0, _queryServiceDefault.default));
-        this.setBookmarkService((0, _bookmarkServiceJsDefault.default));
-        this.setRecipeService((0, _recipeServiceJsDefault.default));
-    }
-    setViewService(viewService) {
-        this.viewService = viewService;
-    }
-    setQueryService(queryService) {
-        this.queryService = queryService;
-    }
-    setBookmarkService(bookmarkService) {
-        this.bookmarkService = bookmarkService;
-    }
-    setRecipeService(recipeService) {
-        this.recipeService = recipeService;
-    }
+    constructor(){}
     setParentElement(element) {
         this._parentElement = element;
-    }
-    addHandlerAddBookmark(handler) {
-        this._parentElement.addEventListener("click", function(e) {
-            const btn = e.target.closest(".btn--bookmark");
-            if (!btn) return;
-            handler();
-        });
     }
     subscribeLoadAndHashChange() {
         (0, _rxjs.from)([
@@ -4182,7 +4903,7 @@ class RecipeModel {
     addBookmark(recipe) {
         // 1) update bookmark state for UI rendering
         this.bookmarks.push(recipe);
-        this.bookmarkService.setBookmarkObservable(this.bookmarks);
+        (0, _bookmarkServiceJsDefault.default).setBookmarkObservable(this.bookmarks);
         // 2) update bookmark state for recipe rendering
         recipe.bookmarked = true;
         this.recipeObservable.next(recipe);
@@ -4199,7 +4920,7 @@ class RecipeModel {
         // 3) delete bookmark
         this.bookmarks.splice(index, 1);
         // 4) update bookmark observable
-        this.bookmarkService.setBookmarkObservable(this.bookmarks);
+        (0, _bookmarkServiceJsDefault.default).setBookmarkObservable(this.bookmarks);
         // 5) persist bookmarks in the local storage
         this.persistBookmarks();
     }
@@ -4213,14 +4934,14 @@ class RecipeModel {
         this._parentElement.innerHTML = "";
     }
     loadRecipe(id) {
-        this._parentElement ?? this.viewService.renderSpinner(this._parentElement.querySelector(".message"));
+        this._parentElement ?? (0, _viewServiceDefault.default).renderSpinner(this._parentElement.querySelector(".message"));
         try {
-            this.queryService.recipeSubscrption(id).subscribe((data)=>{
+            (0, _queryServiceDefault.default).recipeSubscrption(id).subscribe((data)=>{
                 if (data) {
                     // 1) create recipe object
-                    const recipe = (0, _helpers.createRecipeObject)(data);
+                    const recipe = (0, _utils.createRecipeObject)(data);
                     // 2) update recipe observable; if bookmarked, push to bookmarks
-                    this.bookmarkService.bookmarks.some((bookmark)=>bookmark.id === id) ? recipe.bookmarked = this.bookmarks.push(recipe) : recipe.bookmarked = false;
+                    (0, _bookmarkServiceJsDefault.default).bookmarks.some((bookmark)=>bookmark.id === id) ? recipe.bookmarked = this.bookmarks.push(recipe) : recipe.bookmarked = false;
                     // 3) update recipe observable
                     this.recipeObservable.next(recipe);
                 }
@@ -4230,13 +4951,13 @@ class RecipeModel {
         }
     }
     updateView() {
-        this._parentElement ?? this.viewService.renderSpinner(this._parentElement.querySelector(".message"));
+        this._parentElement ?? (0, _viewServiceDefault.default).renderSpinner(this._parentElement.querySelector(".message"));
         try {
             this.recipeObservable.subscribe((recipe)=>{
                 if (recipe) {
-                    const markup = this.recipeService.generateRecipeMarkup(recipe);
+                    const markup = (0, _recipeServiceJsDefault.default).generateRecipeMarkup(recipe);
                     this._parentElement ?? this.clear();
-                    this.viewService.render(true, this._parentElement, markup);
+                    (0, _viewServiceDefault.default).render(true, this._parentElement, markup);
                 }
             });
         } catch (error) {
@@ -4259,33 +4980,30 @@ class RecipeModel {
 }
 exports.default = new RecipeModel();
 
-},{"rxjs":"lLy7s","../../helpers.js":"hGI1E","../../services/ui-services/viewService":"a8rEx","../../services/queryService":"ddQkl","../../services/bookmarkService.js":"jj733","../../services/ui-services/recipeService.js":"9WBB5","../../helpers":"hGI1E","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ddQkl":[function(require,module,exports) {
+},{"rxjs":"lLy7s","../../services/utils":"5qllG","../../services/ui-services/viewService":"gQpF7","../../services/queryService":"9a76f","../../services/bookmarkService.js":"gVeab","../../services/ui-services/recipeService.js":"1kojB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9a76f":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _config = require("../config");
-var _helpers = require("../helpers");
+var _config = require("../config/config");
+var _utils = require("./utils");
 var _rxjs = require("rxjs");
 class QueryService {
     queryObservable = new (0, _rxjs.BehaviorSubject)("");
     getQuery(selector) {
-        console.log("getQuery with selector: ", selector);
         const parentElement = document.querySelector(`.${selector}`);
-        console.log("parentElement: ", parentElement);
         const recipe = parentElement.querySelector(`.${selector}__field`).value;
-        console.log("recipe: ", recipe);
         parentElement.querySelector(`.${selector}__field`).value = "";
         return recipe;
     }
     searchResultsSubscription(query) {
         try {
-            return (0, _rxjs.from)((0, _helpers.AJAX)(`${(0, _config.API_URL)}?search=${query}&key=${"b1f8f5d1-f59d-4444-b99c-a12bb1d2ff02"}`));
+            return (0, _rxjs.from)((0, _utils.AJAX)(`${(0, _config.API_URL)}?search=${query}&key=${"b1f8f5d1-f59d-4444-b99c-a12bb1d2ff02"}`));
         } catch (error) {
             throw error;
         }
     }
     recipeSubscrption(id) {
         try {
-            return (0, _rxjs.from)((0, _helpers.AJAX)(`${(0, _config.API_URL)}/${id}?key=${"b1f8f5d1-f59d-4444-b99c-a12bb1d2ff02"}`));
+            return (0, _rxjs.from)((0, _utils.AJAX)(`${(0, _config.API_URL)}/${id}?key=${"b1f8f5d1-f59d-4444-b99c-a12bb1d2ff02"}`));
         } catch (error) {
             throw error;
         }
@@ -4293,18 +5011,376 @@ class QueryService {
 }
 exports.default = new QueryService();
 
-},{"../config":"k5Hzs","../helpers":"hGI1E","rxjs":"lLy7s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"EFEjU":[function(require,module,exports) {
+},{"../config/config":"jJZSp","./utils":"5qllG","rxjs":"lLy7s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1kojB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+var _iconsSvg = require("url:../../../assets/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+var _fractional = require("fractional");
+class RecipeService {
+    generateRecipeMarkup(recipe) {
+        if (!recipe) return;
+        return `
+    <figure class="recipe__fig">
+      <img src="${recipe.image}" alt="${recipe.title}" class="recipe__img" crossorigin/>
+      <h1 class="recipe__title">
+        <span>${recipe.title}</span>
+      </h1>
+    </figure>
+
+    <div class="recipe__details">
+      <div class="recipe__info">
+        <svg class="recipe__info-icon">
+          <use href="${0, _iconsSvgDefault.default}#icon-clock"></use>
+        </svg>
+        <span class="recipe__info-data recipe__info-data--minutes">${recipe.cookingTime}</span>
+        <span class="recipe__info-text">minutes</span>
+      </div>
+      <div class="recipe__info">
+        <svg class="recipe__info-icon">
+          <use href="${0, _iconsSvgDefault.default}#icon-users"></use>
+        </svg>
+        <span class="recipe__info-data recipe__info-data--people">${recipe.servings}</span>
+        <span class="recipe__info-text">servings</span>
+
+        <div class="recipe__info-buttons">
+          <button class="btn--tiny btn--update-servings" data-update-to="${recipe.servings - 1}">
+            <svg>
+              <use href="${0, _iconsSvgDefault.default}#icon-minus-circle" ></use>
+            </svg>
+          </button>
+          <button class="btn--tiny btn--update-servings" data-update-to="${recipe.servings + 1}">
+            <svg>
+              <use href="${0, _iconsSvgDefault.default}#icon-plus-circle"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="recipe__user-generated ${recipe.key ? "" : "hidden"}">
+        <svg>
+          <use href="${0, _iconsSvgDefault.default}#icon-user"></use>
+        </svg>
+      </div>
+      <button class="btn--round btn--bookmark">
+        <svg class="">
+          <use href="${0, _iconsSvgDefault.default}#icon-bookmark${recipe.bookmarked ? "-fill" : ""}"></use>
+        </svg>
+      </button>
+    </div>
+
+    <div class="recipe__ingredients">
+      <h2 class="heading--2">Recipe ingredients</h2>
+      <ul class="recipe__ingredient-list">
+        ${recipe.ingredients.map(this.generateIngredientsMarkup).join("")}
+      </ul>
+    </div>
+
+    <div class="recipe__directions">
+      <h2 class="heading--2">How to cook it</h2>
+      <p class="recipe__directions-text">
+        This recipe was carefully designed and tested by
+        <span class="recipe__publisher">${recipe.publisher}</span>. Please check out
+        directions at their website.
+      </p>
+      <a
+        class="btn--small recipe__btn"
+        href="${recipe.sourceUrl}"
+        target="_blank"
+      >
+        <span>Directions</span>
+        <svg class="search__icon">
+          <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
+        </svg>
+      </a>
+    </div>
+    `;
+    }
+    generateIngredientsMarkup(ing) {
+        return `
+      <li class="recipe__ingredient">
+        <svg class="recipe__icon">
+          <use href="${0, _iconsSvgDefault.default}#icon-check"></use>
+        </svg>
+        <div class="recipe__quantity">${ing.quantity ? new (0, _fractional.Fraction)(ing.quantity) : ""}</div>
+        <div class="recipe__description">
+          <span class="recipe__unit">${ing.unit ?? ""}</span>
+          ${ing.description}
+        </div>
+      </li>
+    `;
+    }
+}
+exports.default = new RecipeService();
+
+},{"url:../../../assets/icons.svg":"iJSFl","fractional":"3SU56","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3SU56":[function(require,module,exports) {
+/*
+fraction.js
+A Javascript fraction library.
+
+Copyright (c) 2009  Erik Garrison <erik@hypervolu.me>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+*/ /* Fractions */ /* 
+ *
+ * Fraction objects are comprised of a numerator and a denomenator.  These
+ * values can be accessed at fraction.numerator and fraction.denomenator.
+ *
+ * Fractions are always returned and stored in lowest-form normalized format.
+ * This is accomplished via Fraction.normalize.
+ *
+ * The following mathematical operations on fractions are supported:
+ *
+ * Fraction.equals
+ * Fraction.add
+ * Fraction.subtract
+ * Fraction.multiply
+ * Fraction.divide
+ *
+ * These operations accept both numbers and fraction objects.  (Best results
+ * are guaranteed when the input is a fraction object.)  They all return a new
+ * Fraction object.
+ *
+ * Usage:
+ *
+ * TODO
+ *
+ */ /*
+ * The Fraction constructor takes one of:
+ *   an explicit numerator (integer) and denominator (integer),
+ *   a string representation of the fraction (string),
+ *   or a floating-point number (float)
+ *
+ * These initialization methods are provided for convenience.  Because of
+ * rounding issues the best results will be given when the fraction is
+ * constructed from an explicit integer numerator and denomenator, and not a
+ * decimal number.
+ *
+ *
+ * e.g. new Fraction(1, 2) --> 1/2
+ *      new Fraction('1/2') --> 1/2
+ *      new Fraction('2 3/4') --> 11/4  (prints as 2 3/4)
+ *
+ */ Fraction = function(numerator, denominator) {
+    /* double argument invocation */ if (typeof numerator !== "undefined" && denominator) {
+        if (typeof numerator === "number" && typeof denominator === "number") {
+            this.numerator = numerator;
+            this.denominator = denominator;
+        } else if (typeof numerator === "string" && typeof denominator === "string") {
+            // what are they?
+            // hmm....
+            // assume they are ints?
+            this.numerator = parseInt(numerator);
+            this.denominator = parseInt(denominator);
+        }
+    /* single-argument invocation */ } else if (typeof denominator === "undefined") {
+        num = numerator; // swap variable names for legibility
+        if (typeof num === "number") {
+            this.numerator = num;
+            this.denominator = 1;
+        } else if (typeof num === "string") {
+            var a, b; // hold the first and second part of the fraction, e.g. a = '1' and b = '2/3' in 1 2/3
+            // or a = '2/3' and b = undefined if we are just passed a single-part number
+            var arr = num.split(" ");
+            if (arr[0]) a = arr[0];
+            if (arr[1]) b = arr[1];
+            /* compound fraction e.g. 'A B/C' */ //  if a is an integer ...
+            if (a % 1 === 0 && b && b.match("/")) return new Fraction(a).add(new Fraction(b));
+            else if (a && !b) {
+                /* simple fraction e.g. 'A/B' */ if (typeof a === "string" && a.match("/")) {
+                    // it's not a whole number... it's actually a fraction without a whole part written
+                    var f = a.split("/");
+                    this.numerator = f[0];
+                    this.denominator = f[1];
+                /* string floating point */ } else if (typeof a === "string" && a.match(".")) return new Fraction(parseFloat(a));
+                else {
+                    this.numerator = parseInt(a);
+                    this.denominator = 1;
+                }
+            } else return undefined; // could not parse
+        }
+    }
+    this.normalize();
+};
+Fraction.prototype.clone = function() {
+    return new Fraction(this.numerator, this.denominator);
+};
+/* pretty-printer, converts fractions into whole numbers and fractions */ Fraction.prototype.toString = function() {
+    if (this.denominator === "NaN") return "NaN";
+    var wholepart = this.numerator / this.denominator > 0 ? Math.floor(this.numerator / this.denominator) : Math.ceil(this.numerator / this.denominator);
+    var numerator = this.numerator % this.denominator;
+    var denominator = this.denominator;
+    var result = [];
+    if (wholepart != 0) result.push(wholepart);
+    if (numerator != 0) result.push((wholepart === 0 ? numerator : Math.abs(numerator)) + "/" + denominator);
+    return result.length > 0 ? result.join(" ") : 0;
+};
+/* destructively rescale the fraction by some integral factor */ Fraction.prototype.rescale = function(factor) {
+    this.numerator *= factor;
+    this.denominator *= factor;
+    return this;
+};
+Fraction.prototype.add = function(b) {
+    var a = this.clone();
+    if (b instanceof Fraction) b = b.clone();
+    else b = new Fraction(b);
+    td = a.denominator;
+    a.rescale(b.denominator);
+    b.rescale(td);
+    a.numerator += b.numerator;
+    return a.normalize();
+};
+Fraction.prototype.subtract = function(b) {
+    var a = this.clone();
+    if (b instanceof Fraction) b = b.clone(); // we scale our argument destructively, so clone
+    else b = new Fraction(b);
+    td = a.denominator;
+    a.rescale(b.denominator);
+    b.rescale(td);
+    a.numerator -= b.numerator;
+    return a.normalize();
+};
+Fraction.prototype.multiply = function(b) {
+    var a = this.clone();
+    if (b instanceof Fraction) {
+        a.numerator *= b.numerator;
+        a.denominator *= b.denominator;
+    } else if (typeof b === "number") a.numerator *= b;
+    else return a.multiply(new Fraction(b));
+    return a.normalize();
+};
+Fraction.prototype.divide = function(b) {
+    var a = this.clone();
+    if (b instanceof Fraction) {
+        a.numerator *= b.denominator;
+        a.denominator *= b.numerator;
+    } else if (typeof b === "number") a.denominator *= b;
+    else return a.divide(new Fraction(b));
+    return a.normalize();
+};
+Fraction.prototype.equals = function(b) {
+    if (!(b instanceof Fraction)) b = new Fraction(b);
+    // fractions that are equal should have equal normalized forms
+    var a = this.clone().normalize();
+    var b = b.clone().normalize();
+    return a.numerator === b.numerator && a.denominator === b.denominator;
+};
+/* Utility functions */ /* Destructively normalize the fraction to its smallest representation. 
+ * e.g. 4/16 -> 1/4, 14/28 -> 1/2, etc.
+ * This is called after all math ops.
+ */ Fraction.prototype.normalize = function() {
+    var isFloat = function(n) {
+        return typeof n === "number" && (n > 0 && n % 1 > 0 && n % 1 < 1 || n < 0 && n % -1 < 0 && n % -1 > -1);
+    };
+    var roundToPlaces = function(n, places) {
+        if (!places) return Math.round(n);
+        else {
+            var scalar = Math.pow(10, places);
+            return Math.round(n * scalar) / scalar;
+        }
+    };
+    return function() {
+        // XXX hackish.  Is there a better way to address this issue?
+        //
+        /* first check if we have decimals, and if we do eliminate them
+         * multiply by the 10 ^ number of decimal places in the number
+         * round the number to nine decimal places
+         * to avoid js floating point funnies
+         */ if (isFloat(this.denominator)) {
+            var rounded = roundToPlaces(this.denominator, 9);
+            var scaleup = Math.pow(10, rounded.toString().split(".")[1].length);
+            this.denominator = Math.round(this.denominator * scaleup); // this !!! should be a whole number
+            //this.numerator *= scaleup;
+            this.numerator *= scaleup;
+        }
+        if (isFloat(this.numerator)) {
+            var rounded = roundToPlaces(this.numerator, 9);
+            var scaleup = Math.pow(10, rounded.toString().split(".")[1].length);
+            this.numerator = Math.round(this.numerator * scaleup); // this !!! should be a whole number
+            //this.numerator *= scaleup;
+            this.denominator *= scaleup;
+        }
+        var gcf = Fraction.gcf(this.numerator, this.denominator);
+        this.numerator /= gcf;
+        this.denominator /= gcf;
+        if (this.numerator < 0 && this.denominator < 0 || this.numerator > 0 && this.denominator < 0) {
+            this.numerator *= -1;
+            this.denominator *= -1;
+        }
+        return this;
+    };
+}();
+/* Takes two numbers and returns their greatest common factor.
+ */ Fraction.gcf = function(a, b) {
+    var common_factors = [];
+    var fa = Fraction.primeFactors(a);
+    var fb = Fraction.primeFactors(b);
+    // for each factor in fa
+    // if it's also in fb
+    // put it into the common factors
+    fa.forEach(function(factor) {
+        var i = fb.indexOf(factor);
+        if (i >= 0) {
+            common_factors.push(factor);
+            fb.splice(i, 1); // remove from fb
+        }
+    });
+    if (common_factors.length === 0) return 1;
+    var gcf = function() {
+        var r = common_factors[0];
+        var i;
+        for(i = 1; i < common_factors.length; i++)r = r * common_factors[i];
+        return r;
+    }();
+    return gcf;
+};
+// Adapted from: 
+// http://www.btinternet.com/~se16/js/factor.htm
+Fraction.primeFactors = function(n) {
+    var num1 = Math.abs(n);
+    var factors = [];
+    var _factor = 2; // first potential prime factor
+    while(_factor * _factor <= num1)if (num1 % _factor === 0) {
+        factors.push(_factor); // so keep it
+        num1 = num1 / _factor; // and divide our search point by it
+    } else _factor++; // and increment
+    if (num1 != 1) factors.push(num1); //    so it too should be recorded
+    return factors; // Return the prime factors
+};
+module.exports.Fraction = Fraction;
+
+},{}],"9LITd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ResultView", ()=>ResultView);
 var _resultModel = require("./result-model");
 var _resultModelDefault = parcelHelpers.interopDefault(_resultModel);
 var _paginationView = require("./pagination-view/pagination-view");
-var _paginationViewDefault = parcelHelpers.interopDefault(_paginationView);
-customElements.define("app-pagination-view", (0, _paginationViewDefault.default));
-class ResultView extends HTMLElement {
+var _utils = require("../../services/utils");
+var _afterViewInit = require("../../../app/interfaces/afterViewInit");
+customElements.define("app-pagination-view", (0, _paginationView.PaginationView));
+class ResultView extends (0, _utils.implement)(HTMLElement, [
+    (0, _afterViewInit.AfterViewInit)
+]) {
     selector = "results";
     model;
-    paginationService;
     constructor(){
         super();
         this.setModel((0, _resultModelDefault.default));
@@ -4312,30 +5388,15 @@ class ResultView extends HTMLElement {
     setModel(model) {
         this.model = model;
     }
-    setPaginationService(service) {
-        this.paginationService = service;
-    }
-    connectedCallback() {
-        // TODO: how to wait for component to be loaded?
-        // FIXME: <ul></ul> and <pagination-view></pagination-view> aren't being rendered
-        // use mutation observer
-        this.innerHTML = `
-    <div id="result-data">
-      <ul class="${this.selector}"></ul>
-      <app-pagination-view></app-pagination-view>
-    </div>
-    `;
-        console.log("result view connectedCallback");
-        console.log("result view addEventListner");
+    afterViewInit() {
         const parentElement = this.querySelector(`.${this.selector}`);
         const paginationElement = this.querySelector(".pagination");
         this.model.setParentElement(parentElement);
         this.model.render(1, paginationElement);
     }
 }
-exports.default = ResultView;
 
-},{"./result-model":"3C0kW","./pagination-view/pagination-view":"4eRvL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3C0kW":[function(require,module,exports) {
+},{"./result-model":"jFIbh","./pagination-view/pagination-view":"kUQyq","../../services/utils":"5qllG","../../../app/interfaces/afterViewInit":"5erAA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jFIbh":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _queryService = require("../../services/queryService");
@@ -4346,43 +5407,19 @@ var _previewService = require("../../services/ui-services/previewService");
 var _previewServiceDefault = parcelHelpers.interopDefault(_previewService);
 var _paginationService = require("../../services/ui-services/paginationService");
 var _paginationServiceDefault = parcelHelpers.interopDefault(_paginationService);
-var _iconsSvg = require("url:../../../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-var _config = require("../../config");
+var _config = require("../../config/config");
 var _rxjs = require("rxjs");
 class ResultModel {
     searchResultsObservable = new (0, _rxjs.BehaviorSubject)([]);
     searchResults = [];
     _parentElement;
-    queryService;
-    previewService;
-    viewSerivce;
-    paginationService;
-    constructor(){
-        this.setQueryService((0, _queryServiceDefault.default));
-        this.setPreviewService((0, _previewServiceDefault.default));
-        this.setViewService((0, _viewServiceDefault.default));
-        this.setPaginationService((0, _paginationServiceDefault.default));
-    }
-    setQueryService(service) {
-        this.queryService = service;
-    }
-    setPreviewService(service) {
-        this.previewService = service;
-    }
-    setViewService(service) {
-        this.viewService = service;
-    }
-    setPaginationService(service) {
-        this.paginationService = service;
-    }
+    constructor(){}
     setParentElement(parentElement) {
         this._parentElement = parentElement;
     }
     render(page = (0, _config.INITIAL_PAGE), paginationElement) {
-        console.log("pagination in the render in the result-model", paginationElement);
         try {
-            this.queryService.queryObservable.subscribe((query)=>{
+            (0, _queryServiceDefault.default).queryObservable.subscribe((query)=>{
                 if (query) {
                     console.log("query in result-model", query);
                     // 1) load search results
@@ -4411,9 +5448,9 @@ class ResultModel {
     loadSearchResults(query) {
         try {
             // 1) render the spinner while loading the data
-            this.viewService.renderSpinner(this._parentElement);
+            (0, _viewServiceDefault.default).renderSpinner(this._parentElement);
             // 2) load the search results
-            this.queryService.searchResultsSubscription(query).subscribe((data)=>{
+            (0, _queryServiceDefault.default).searchResultsSubscription(query).subscribe((data)=>{
                 const recipes = data.data.recipes.map((rec)=>{
                     return {
                         id: rec.id,
@@ -4440,11 +5477,11 @@ class ResultModel {
                 this.clear();
                 const paginationData = this.getSearchResultsPaginationPage(data, page);
                 const markup = this.generatePreviewMarkup(paginationData);
-                this.viewService.render(true, this._parentElement, markup);
+                (0, _viewServiceDefault.default).render(true, this._parentElement, markup);
                 // // 2) pagination buttons
-                this.paginationService.clear(paginationElement);
-                const paginationMarkup = this.paginationService.generateMarkup(data, page);
-                this.viewService.render(true, paginationElement, paginationMarkup);
+                (0, _paginationServiceDefault.default).clear(paginationElement);
+                const paginationMarkup = (0, _paginationServiceDefault.default).generateMarkup(data, page);
+                (0, _viewServiceDefault.default).render(true, paginationElement, paginationMarkup);
                 console.log("data ", data);
             }
         });
@@ -4455,30 +5492,22 @@ class ResultModel {
         return results.slice(start, end);
     }
     generatePreviewMarkup(results) {
-        return results.map((result)=>this.viewService.render(false, "", this.previewService.generateMarkup(result))).join("");
+        return results.map((result)=>(0, _viewServiceDefault.default).render(false, "", (0, _previewServiceDefault.default).generateMarkup(result))).join("");
     }
 }
 exports.default = new ResultModel();
 
-},{"../../services/queryService":"ddQkl","../../services/ui-services/viewService":"a8rEx","../../services/ui-services/previewService":"f8Ogl","../../services/ui-services/paginationService":"21AQl","url:../../../img/icons.svg":"gg8PR","../../config":"k5Hzs","rxjs":"lLy7s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"21AQl":[function(require,module,exports) {
+},{"../../services/queryService":"9a76f","../../services/ui-services/viewService":"gQpF7","../../services/ui-services/previewService":"aoFmf","../../services/ui-services/paginationService":"hGO2i","../../config/config":"jJZSp","rxjs":"lLy7s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hGO2i":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _iconsSvg = require("url:../../../img/icons.svg"); // Parcel 2
+var _iconsSvg = require("url:../../../assets/icons.svg"); // Parcel 2
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-var _config = require("../../config");
+var _config = require("../../config/config");
 var _rxjs = require("rxjs");
-// TODO: will be combined inside the result-view
 class PaginationService {
-    // _parentElement = document.querySelector('.pagination');
     pageObservable = new (0, _rxjs.BehaviorSubject)((0, _config.INITIAL_PAGE));
     constructor(){}
     addHandlerClick(element, handler) {
-        // this._parentElement.addEventListener('click', function (e) {
-        //   const btn = e.target.closest('.btn--inline');
-        //   if (!btn) return;
-        //   const goToPage = +btn.dataset.goto;
-        //   handler(goToPage);
-        // });
         // should pass document.querySelector('.pagination') as element
         console.log("element", element);
         console.log("handler", handler);
@@ -4528,46 +5557,98 @@ class PaginationService {
 }
 exports.default = new PaginationService();
 
-},{"url:../../../img/icons.svg":"gg8PR","../../config":"k5Hzs","rxjs":"lLy7s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4R6xY":[function(require,module,exports) {
+},{"url:../../../assets/icons.svg":"iJSFl","../../config/config":"jJZSp","rxjs":"lLy7s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kUQyq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _queryService = require("../../services/queryService");
-var _queryServiceDefault = parcelHelpers.interopDefault(_queryService);
-var _iconsSvg = require("url:../../../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-var _rxjs = require("rxjs");
-var _helpers = require("../../helpers");
-class SearchBar extends HTMLElement {
-    _selector = "search";
-    queryService;
+parcelHelpers.export(exports, "PaginationView", ()=>PaginationView);
+var _paginationModel = require("./pagination-model");
+var _paginationModelDefault = parcelHelpers.interopDefault(_paginationModel);
+class PaginationView extends HTMLElement {
+    _parentElement;
+    model;
     constructor(){
         super();
-        this.setQueryService((0, _queryServiceDefault.default));
-        this.addHandlerSearch(this.queryService, this._selector);
-    }
-    setQueryService(queryService) {
-        this.queryService = queryService;
     }
     connectedCallback() {
+        // nested custom element cannot use fetch
+        // since it's the asynchronous operation
+        // ouside custom element won't wait for it
         this.innerHTML = `
-    <form class="${this._selector}">
-      <input
-        type="text"
-        class="${this._selector}__field"
-        placeholder="Search over 1,000,000 recipes..."
-      />
-      <button class="btn ${this._selector}__btn">
-        <svg class="${this._selector}__icon">
-          <use href="${0, _iconsSvgDefault.default}#icon-search"></use>
+    <div class="pagination"></div>
+    `;
+        this._parentElement = document.querySelector(".pagination");
+        this.setModel((0, _paginationModelDefault.default));
+    }
+    setModel(model) {
+        this.model = model;
+    }
+}
+
+},{"./pagination-model":"aN0Oc","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aN0Oc":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _iconsSvg = require("url:../../../../assets/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+var _config = require("../../../config/config");
+class PaginationModel {
+    constructor(){}
+    generateMarkup(results, page = (0, _config.INITIAL_PAGE)) {
+        if (!results) return "";
+        const curPage = page;
+        const numPages = Math.ceil(results.length / (0, _config.RES_PER_PAGE));
+        // Page 1, and there are other pages
+        if (curPage === 1 && numPages > 1) return this.generateNextMarkup(curPage);
+        // Last page
+        if (curPage === numPages && numPages > 1) return this.generatePrevMarkup(curPage);
+        // Other page
+        if (curPage < numPages) return `${this.generatePrevMarkup(curPage)}${this.generateNextMarkup(curPage)}`;
+        // Page 1, and there are NO other pages
+        return "";
+    }
+    generateNextMarkup(curPage) {
+        return `
+      <button data-goto="${curPage + 1}" class="btn--inline pagination__btn--next">
+        <span>Page ${curPage + 1}</span>
+        <svg class="search__icon">
+          <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
         </svg>
-        <span>Search</span>
       </button>
-    </form>
     `;
     }
+    generatePrevMarkup(curPage) {
+        return `
+      <button data-goto="${curPage - 1}" class="btn--inline pagination__btn--prev">
+        <svg class="search__icon">
+          <use href="${0, _iconsSvgDefault.default}#icon-arrow-left"></use>
+        </svg>
+        <span>Page ${curPage - 1}</span>
+      </button>
+    `;
+    }
+}
+exports.default = new PaginationModel();
+
+},{"url:../../../../assets/icons.svg":"iJSFl","../../../config/config":"jJZSp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4NZ96":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "SearchBar", ()=>SearchBar);
+var _queryService = require("../../services/queryService");
+var _queryServiceDefault = parcelHelpers.interopDefault(_queryService);
+var _rxjs = require("rxjs");
+var _utils = require("../../services/utils");
+var _afterViewInit = require("../../../app/interfaces/afterViewInit");
+class SearchBar extends (0, _utils.implement)(HTMLElement, [
+    (0, _afterViewInit.AfterViewInit)
+]) {
+    _selector = "search";
+    constructor(){
+        super();
+    }
+    afterViewInit() {
+        this.addHandlerSearch((0, _queryServiceDefault.default), this._selector);
+    }
     addHandlerSearch(service, selector) {
-        (0, _helpers.waitForElm)(`.${selector}`).then(()=>{
-            // console.log('search bar addEventListner');
+        (0, _utils.waitForElm)(`.${selector}`).then(()=>{
             (0, _rxjs.fromEvent)(this, "submit").subscribe((e)=>{
                 e.preventDefault();
                 const query = service.getQuery(selector);
@@ -4576,11 +5657,606 @@ class SearchBar extends HTMLElement {
         });
     }
 }
-exports.default = SearchBar;
 
-},{"../../services/queryService":"ddQkl","url:../../../img/icons.svg":"gg8PR","rxjs":"lLy7s","../../helpers":"hGI1E","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1tVao":[function(require,module,exports) {
-module.exports = require("./helpers/bundle-url").getBundleURL("ixJtV") + "logo.22d25e67.png" + "?" + Date.now();
+},{"../../services/queryService":"9a76f","rxjs":"lLy7s","../../services/utils":"5qllG","../../../app/interfaces/afterViewInit":"5erAA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9YGka":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("1mYVm") + "add-recipe-view.39e213b5.html" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"lgJ39"}]},["7ZoMj","8lRBv"], "8lRBv", "parcelRequire4634")
+},{"./helpers/bundle-url":"lgJ39"}],"i0ZPn":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("1mYVm") + "copyright.bcbe8a82.html" + "?" + Date.now();
 
-//# sourceMappingURL=index.59a40e7a.js.map
+},{"./helpers/bundle-url":"lgJ39"}],"2xfbi":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("1mYVm") + "nav-bar.2f1f8c0e.html" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"h336z":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("1mYVm") + "result-view.3ac17b9a.html" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"G4tcQ":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("1mYVm") + "search-bar.800b1f37.html" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"gphWe":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("1mYVm") + "app.8e7c601c.html" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"dXNgZ":[function(require,module,exports) {
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ var runtime = function(exports) {
+    "use strict";
+    var Op = Object.prototype;
+    var hasOwn = Op.hasOwnProperty;
+    var defineProperty = Object.defineProperty || function(obj, key, desc) {
+        obj[key] = desc.value;
+    };
+    var undefined; // More compressible than void 0.
+    var $Symbol = typeof Symbol === "function" ? Symbol : {};
+    var iteratorSymbol = $Symbol.iterator || "@@iterator";
+    var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+    var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+    function define(obj, key, value) {
+        Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: true,
+            configurable: true,
+            writable: true
+        });
+        return obj[key];
+    }
+    try {
+        // IE 8 has a broken Object.defineProperty that only works on DOM objects.
+        define({}, "");
+    } catch (err) {
+        define = function(obj, key, value) {
+            return obj[key] = value;
+        };
+    }
+    function wrap(innerFn, outerFn, self, tryLocsList) {
+        // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+        var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+        var generator = Object.create(protoGenerator.prototype);
+        var context = new Context(tryLocsList || []);
+        // The ._invoke method unifies the implementations of the .next,
+        // .throw, and .return methods.
+        defineProperty(generator, "_invoke", {
+            value: makeInvokeMethod(innerFn, self, context)
+        });
+        return generator;
+    }
+    exports.wrap = wrap;
+    // Try/catch helper to minimize deoptimizations. Returns a completion
+    // record like context.tryEntries[i].completion. This interface could
+    // have been (and was previously) designed to take a closure to be
+    // invoked without arguments, but in all the cases we care about we
+    // already have an existing method we want to call, so there's no need
+    // to create a new function object. We can even get away with assuming
+    // the method takes exactly one argument, since that happens to be true
+    // in every case, so we don't have to touch the arguments object. The
+    // only additional allocation required is the completion record, which
+    // has a stable shape and so hopefully should be cheap to allocate.
+    function tryCatch(fn, obj, arg) {
+        try {
+            return {
+                type: "normal",
+                arg: fn.call(obj, arg)
+            };
+        } catch (err) {
+            return {
+                type: "throw",
+                arg: err
+            };
+        }
+    }
+    var GenStateSuspendedStart = "suspendedStart";
+    var GenStateSuspendedYield = "suspendedYield";
+    var GenStateExecuting = "executing";
+    var GenStateCompleted = "completed";
+    // Returning this object from the innerFn has the same effect as
+    // breaking out of the dispatch switch statement.
+    var ContinueSentinel = {};
+    // Dummy constructor functions that we use as the .constructor and
+    // .constructor.prototype properties for functions that return Generator
+    // objects. For full spec compliance, you may wish to configure your
+    // minifier not to mangle the names of these two functions.
+    function Generator() {}
+    function GeneratorFunction() {}
+    function GeneratorFunctionPrototype() {}
+    // This is a polyfill for %IteratorPrototype% for environments that
+    // don't natively support it.
+    var IteratorPrototype = {};
+    define(IteratorPrototype, iteratorSymbol, function() {
+        return this;
+    });
+    var getProto = Object.getPrototypeOf;
+    var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+    if (NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+    var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+    GeneratorFunction.prototype = GeneratorFunctionPrototype;
+    defineProperty(Gp, "constructor", {
+        value: GeneratorFunctionPrototype,
+        configurable: true
+    });
+    defineProperty(GeneratorFunctionPrototype, "constructor", {
+        value: GeneratorFunction,
+        configurable: true
+    });
+    GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction");
+    // Helper for defining the .next, .throw, and .return methods of the
+    // Iterator interface in terms of a single ._invoke method.
+    function defineIteratorMethods(prototype) {
+        [
+            "next",
+            "throw",
+            "return"
+        ].forEach(function(method) {
+            define(prototype, method, function(arg) {
+                return this._invoke(method, arg);
+            });
+        });
+    }
+    exports.isGeneratorFunction = function(genFun) {
+        var ctor = typeof genFun === "function" && genFun.constructor;
+        return ctor ? ctor === GeneratorFunction || // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
+    };
+    exports.mark = function(genFun) {
+        if (Object.setPrototypeOf) Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+        else {
+            genFun.__proto__ = GeneratorFunctionPrototype;
+            define(genFun, toStringTagSymbol, "GeneratorFunction");
+        }
+        genFun.prototype = Object.create(Gp);
+        return genFun;
+    };
+    // Within the body of any async function, `await x` is transformed to
+    // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+    // `hasOwn.call(value, "__await")` to determine if the yielded value is
+    // meant to be awaited.
+    exports.awrap = function(arg) {
+        return {
+            __await: arg
+        };
+    };
+    function AsyncIterator(generator, PromiseImpl) {
+        function invoke(method, arg, resolve, reject) {
+            var record = tryCatch(generator[method], generator, arg);
+            if (record.type === "throw") reject(record.arg);
+            else {
+                var result = record.arg;
+                var value = result.value;
+                if (value && typeof value === "object" && hasOwn.call(value, "__await")) return PromiseImpl.resolve(value.__await).then(function(value) {
+                    invoke("next", value, resolve, reject);
+                }, function(err) {
+                    invoke("throw", err, resolve, reject);
+                });
+                return PromiseImpl.resolve(value).then(function(unwrapped) {
+                    // When a yielded Promise is resolved, its final value becomes
+                    // the .value of the Promise<{value,done}> result for the
+                    // current iteration.
+                    result.value = unwrapped;
+                    resolve(result);
+                }, function(error) {
+                    // If a rejected Promise was yielded, throw the rejection back
+                    // into the async generator function so it can be handled there.
+                    return invoke("throw", error, resolve, reject);
+                });
+            }
+        }
+        var previousPromise;
+        function enqueue(method, arg) {
+            function callInvokeWithMethodAndArg() {
+                return new PromiseImpl(function(resolve, reject) {
+                    invoke(method, arg, resolve, reject);
+                });
+            }
+            return previousPromise = // If enqueue has been called before, then we want to wait until
+            // all previous Promises have been resolved before calling invoke,
+            // so that results are always delivered in the correct order. If
+            // enqueue has not been called before, then it is important to
+            // call invoke immediately, without waiting on a callback to fire,
+            // so that the async generator function has the opportunity to do
+            // any necessary setup in a predictable way. This predictability
+            // is why the Promise constructor synchronously invokes its
+            // executor callback, and why async functions synchronously
+            // execute code before the first await. Since we implement simple
+            // async functions in terms of async generators, it is especially
+            // important to get this right, even though it requires care.
+            previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, // Avoid propagating failures to Promises returned by later
+            // invocations of the iterator.
+            callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+        }
+        // Define the unified helper method that is used to implement .next,
+        // .throw, and .return (see defineIteratorMethods).
+        defineProperty(this, "_invoke", {
+            value: enqueue
+        });
+    }
+    defineIteratorMethods(AsyncIterator.prototype);
+    define(AsyncIterator.prototype, asyncIteratorSymbol, function() {
+        return this;
+    });
+    exports.AsyncIterator = AsyncIterator;
+    // Note that simple async functions are implemented on top of
+    // AsyncIterator objects; they just return a Promise for the value of
+    // the final result produced by the iterator.
+    exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+        if (PromiseImpl === void 0) PromiseImpl = Promise;
+        var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
+        return exports.isGeneratorFunction(outerFn) ? iter // If outerFn is a generator, return the full iterator.
+         : iter.next().then(function(result) {
+            return result.done ? result.value : iter.next();
+        });
+    };
+    function makeInvokeMethod(innerFn, self, context) {
+        var state = GenStateSuspendedStart;
+        return function invoke(method, arg) {
+            if (state === GenStateExecuting) throw new Error("Generator is already running");
+            if (state === GenStateCompleted) {
+                if (method === "throw") throw arg;
+                // Be forgiving, per 25.3.3.3.3 of the spec:
+                // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+                return doneResult();
+            }
+            context.method = method;
+            context.arg = arg;
+            while(true){
+                var delegate = context.delegate;
+                if (delegate) {
+                    var delegateResult = maybeInvokeDelegate(delegate, context);
+                    if (delegateResult) {
+                        if (delegateResult === ContinueSentinel) continue;
+                        return delegateResult;
+                    }
+                }
+                if (context.method === "next") // Setting context._sent for legacy support of Babel's
+                // function.sent implementation.
+                context.sent = context._sent = context.arg;
+                else if (context.method === "throw") {
+                    if (state === GenStateSuspendedStart) {
+                        state = GenStateCompleted;
+                        throw context.arg;
+                    }
+                    context.dispatchException(context.arg);
+                } else if (context.method === "return") context.abrupt("return", context.arg);
+                state = GenStateExecuting;
+                var record = tryCatch(innerFn, self, context);
+                if (record.type === "normal") {
+                    // If an exception is thrown from innerFn, we leave state ===
+                    // GenStateExecuting and loop back for another invocation.
+                    state = context.done ? GenStateCompleted : GenStateSuspendedYield;
+                    if (record.arg === ContinueSentinel) continue;
+                    return {
+                        value: record.arg,
+                        done: context.done
+                    };
+                } else if (record.type === "throw") {
+                    state = GenStateCompleted;
+                    // Dispatch the exception by looping back around to the
+                    // context.dispatchException(context.arg) call above.
+                    context.method = "throw";
+                    context.arg = record.arg;
+                }
+            }
+        };
+    }
+    // Call delegate.iterator[context.method](context.arg) and handle the
+    // result, either by returning a { value, done } result from the
+    // delegate iterator, or by modifying context.method and context.arg,
+    // setting context.delegate to null, and returning the ContinueSentinel.
+    function maybeInvokeDelegate(delegate, context) {
+        var method = delegate.iterator[context.method];
+        if (method === undefined) {
+            // A .throw or .return when the delegate iterator has no .throw
+            // method always terminates the yield* loop.
+            context.delegate = null;
+            if (context.method === "throw") {
+                // Note: ["return"] must be used for ES3 parsing compatibility.
+                if (delegate.iterator["return"]) {
+                    // If the delegate iterator has a return method, give it a
+                    // chance to clean up.
+                    context.method = "return";
+                    context.arg = undefined;
+                    maybeInvokeDelegate(delegate, context);
+                    if (context.method === "throw") // If maybeInvokeDelegate(context) changed context.method from
+                    // "return" to "throw", let that override the TypeError below.
+                    return ContinueSentinel;
+                }
+                context.method = "throw";
+                context.arg = new TypeError("The iterator does not provide a 'throw' method");
+            }
+            return ContinueSentinel;
+        }
+        var record = tryCatch(method, delegate.iterator, context.arg);
+        if (record.type === "throw") {
+            context.method = "throw";
+            context.arg = record.arg;
+            context.delegate = null;
+            return ContinueSentinel;
+        }
+        var info = record.arg;
+        if (!info) {
+            context.method = "throw";
+            context.arg = new TypeError("iterator result is not an object");
+            context.delegate = null;
+            return ContinueSentinel;
+        }
+        if (info.done) {
+            // Assign the result of the finished delegate to the temporary
+            // variable specified by delegate.resultName (see delegateYield).
+            context[delegate.resultName] = info.value;
+            // Resume execution at the desired location (see delegateYield).
+            context.next = delegate.nextLoc;
+            // If context.method was "throw" but the delegate handled the
+            // exception, let the outer generator proceed normally. If
+            // context.method was "next", forget context.arg since it has been
+            // "consumed" by the delegate iterator. If context.method was
+            // "return", allow the original .return call to continue in the
+            // outer generator.
+            if (context.method !== "return") {
+                context.method = "next";
+                context.arg = undefined;
+            }
+        } else // Re-yield the result returned by the delegate method.
+        return info;
+        // The delegate iterator is finished, so forget it and continue with
+        // the outer generator.
+        context.delegate = null;
+        return ContinueSentinel;
+    }
+    // Define Generator.prototype.{next,throw,return} in terms of the
+    // unified ._invoke helper method.
+    defineIteratorMethods(Gp);
+    define(Gp, toStringTagSymbol, "Generator");
+    // A Generator should always return itself as the iterator object when the
+    // @@iterator function is called on it. Some browsers' implementations of the
+    // iterator prototype chain incorrectly implement this, causing the Generator
+    // object to not be returned from this call. This ensures that doesn't happen.
+    // See https://github.com/facebook/regenerator/issues/274 for more details.
+    define(Gp, iteratorSymbol, function() {
+        return this;
+    });
+    define(Gp, "toString", function() {
+        return "[object Generator]";
+    });
+    function pushTryEntry(locs) {
+        var entry = {
+            tryLoc: locs[0]
+        };
+        if (1 in locs) entry.catchLoc = locs[1];
+        if (2 in locs) {
+            entry.finallyLoc = locs[2];
+            entry.afterLoc = locs[3];
+        }
+        this.tryEntries.push(entry);
+    }
+    function resetTryEntry(entry) {
+        var record = entry.completion || {};
+        record.type = "normal";
+        delete record.arg;
+        entry.completion = record;
+    }
+    function Context(tryLocsList) {
+        // The root entry object (effectively a try statement without a catch
+        // or a finally block) gives us a place to store values thrown from
+        // locations where there is no enclosing try statement.
+        this.tryEntries = [
+            {
+                tryLoc: "root"
+            }
+        ];
+        tryLocsList.forEach(pushTryEntry, this);
+        this.reset(true);
+    }
+    exports.keys = function(val) {
+        var object = Object(val);
+        var keys = [];
+        for(var key in object)keys.push(key);
+        keys.reverse();
+        // Rather than returning an object with a next method, we keep
+        // things simple and return the next function itself.
+        return function next() {
+            while(keys.length){
+                var key = keys.pop();
+                if (key in object) {
+                    next.value = key;
+                    next.done = false;
+                    return next;
+                }
+            }
+            // To avoid creating an additional object, we just hang the .value
+            // and .done properties off the next function object itself. This
+            // also ensures that the minifier will not anonymize the function.
+            next.done = true;
+            return next;
+        };
+    };
+    function values(iterable) {
+        if (iterable) {
+            var iteratorMethod = iterable[iteratorSymbol];
+            if (iteratorMethod) return iteratorMethod.call(iterable);
+            if (typeof iterable.next === "function") return iterable;
+            if (!isNaN(iterable.length)) {
+                var i = -1, next = function next() {
+                    while(++i < iterable.length)if (hasOwn.call(iterable, i)) {
+                        next.value = iterable[i];
+                        next.done = false;
+                        return next;
+                    }
+                    next.value = undefined;
+                    next.done = true;
+                    return next;
+                };
+                return next.next = next;
+            }
+        }
+        // Return an iterator with no values.
+        return {
+            next: doneResult
+        };
+    }
+    exports.values = values;
+    function doneResult() {
+        return {
+            value: undefined,
+            done: true
+        };
+    }
+    Context.prototype = {
+        constructor: Context,
+        reset: function(skipTempReset) {
+            this.prev = 0;
+            this.next = 0;
+            // Resetting context._sent for legacy support of Babel's
+            // function.sent implementation.
+            this.sent = this._sent = undefined;
+            this.done = false;
+            this.delegate = null;
+            this.method = "next";
+            this.arg = undefined;
+            this.tryEntries.forEach(resetTryEntry);
+            if (!skipTempReset) {
+                for(var name in this)// Not sure about the optimal order of these conditions:
+                if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) this[name] = undefined;
+            }
+        },
+        stop: function() {
+            this.done = true;
+            var rootEntry = this.tryEntries[0];
+            var rootRecord = rootEntry.completion;
+            if (rootRecord.type === "throw") throw rootRecord.arg;
+            return this.rval;
+        },
+        dispatchException: function(exception) {
+            if (this.done) throw exception;
+            var context = this;
+            function handle(loc, caught) {
+                record.type = "throw";
+                record.arg = exception;
+                context.next = loc;
+                if (caught) {
+                    // If the dispatched exception was caught by a catch block,
+                    // then let that catch block handle the exception normally.
+                    context.method = "next";
+                    context.arg = undefined;
+                }
+                return !!caught;
+            }
+            for(var i = this.tryEntries.length - 1; i >= 0; --i){
+                var entry = this.tryEntries[i];
+                var record = entry.completion;
+                if (entry.tryLoc === "root") // Exception thrown outside of any try block that could handle
+                // it, so set the completion value of the entire function to
+                // throw the exception.
+                return handle("end");
+                if (entry.tryLoc <= this.prev) {
+                    var hasCatch = hasOwn.call(entry, "catchLoc");
+                    var hasFinally = hasOwn.call(entry, "finallyLoc");
+                    if (hasCatch && hasFinally) {
+                        if (this.prev < entry.catchLoc) return handle(entry.catchLoc, true);
+                        else if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+                    } else if (hasCatch) {
+                        if (this.prev < entry.catchLoc) return handle(entry.catchLoc, true);
+                    } else if (hasFinally) {
+                        if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+                    } else throw new Error("try statement without catch or finally");
+                }
+            }
+        },
+        abrupt: function(type, arg) {
+            for(var i = this.tryEntries.length - 1; i >= 0; --i){
+                var entry = this.tryEntries[i];
+                if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+                    var finallyEntry = entry;
+                    break;
+                }
+            }
+            if (finallyEntry && (type === "break" || type === "continue") && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc) // Ignore the finally entry if control is not jumping to a
+            // location outside the try/catch block.
+            finallyEntry = null;
+            var record = finallyEntry ? finallyEntry.completion : {};
+            record.type = type;
+            record.arg = arg;
+            if (finallyEntry) {
+                this.method = "next";
+                this.next = finallyEntry.finallyLoc;
+                return ContinueSentinel;
+            }
+            return this.complete(record);
+        },
+        complete: function(record, afterLoc) {
+            if (record.type === "throw") throw record.arg;
+            if (record.type === "break" || record.type === "continue") this.next = record.arg;
+            else if (record.type === "return") {
+                this.rval = this.arg = record.arg;
+                this.method = "return";
+                this.next = "end";
+            } else if (record.type === "normal" && afterLoc) this.next = afterLoc;
+            return ContinueSentinel;
+        },
+        finish: function(finallyLoc) {
+            for(var i = this.tryEntries.length - 1; i >= 0; --i){
+                var entry = this.tryEntries[i];
+                if (entry.finallyLoc === finallyLoc) {
+                    this.complete(entry.completion, entry.afterLoc);
+                    resetTryEntry(entry);
+                    return ContinueSentinel;
+                }
+            }
+        },
+        "catch": function(tryLoc) {
+            for(var i = this.tryEntries.length - 1; i >= 0; --i){
+                var entry = this.tryEntries[i];
+                if (entry.tryLoc === tryLoc) {
+                    var record = entry.completion;
+                    if (record.type === "throw") {
+                        var thrown = record.arg;
+                        resetTryEntry(entry);
+                    }
+                    return thrown;
+                }
+            }
+            // The context.catch method must only be called with a location
+            // argument that corresponds to a known catch block.
+            throw new Error("illegal catch attempt");
+        },
+        delegateYield: function(iterable, resultName, nextLoc) {
+            this.delegate = {
+                iterator: values(iterable),
+                resultName: resultName,
+                nextLoc: nextLoc
+            };
+            if (this.method === "next") // Deliberately forget the last sent value so that we don't
+            // accidentally pass it on to the delegate.
+            this.arg = undefined;
+            return ContinueSentinel;
+        }
+    };
+    // Regardless of whether this script is executing as a CommonJS module
+    // or not, return the runtime object so that we can declare the variable
+    // regeneratorRuntime in the outer scope, which allows this module to be
+    // injected easily by `bin/regenerator --include-runtime script.js`.
+    return exports;
+}(module.exports);
+try {
+    regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+    // This module should not be running in strict mode, so the above
+    // assignment should always work unless something is misconfigured. Just
+    // in case runtime.js accidentally runs in strict mode, in modern engines
+    // we can explicitly access globalThis. In older engines we can escape
+    // strict mode using a global Function call. This could conceivably fail
+    // if a Content Security Policy forbids using Function, but in that case
+    // the proper solution is to fix the accidental strict mode problem. If
+    // you've misconfigured your bundler to force strict mode and applied a
+    // CSP to forbid Function, and you're not willing to fix either of those
+    // problems, please detail your unique predicament in a GitHub issue.
+    if (typeof globalThis === "object") globalThis.regeneratorRuntime = runtime;
+    else Function("r", "regeneratorRuntime = r")(runtime);
+}
+
+},{}]},["arNBx","4banG"], "4banG", "parcelRequire4634")
+
+//# sourceMappingURL=index.4f761e1f.js.map
