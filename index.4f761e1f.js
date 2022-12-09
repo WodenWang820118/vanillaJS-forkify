@@ -5421,7 +5421,7 @@ class ResultModel {
         try {
             (0, _queryServiceDefault.default).queryObservable.subscribe((query)=>{
                 if (query) {
-                    console.log("query in result-model", query);
+                    // console.log('query in result-model', query);
                     // 1) load search results
                     this.loadSearchResults(query);
                     // 2) update the result view
@@ -5482,7 +5482,7 @@ class ResultModel {
                 (0, _paginationServiceDefault.default).clear(paginationElement);
                 const paginationMarkup = (0, _paginationServiceDefault.default).generateMarkup(data, page);
                 (0, _viewServiceDefault.default).render(true, paginationElement, paginationMarkup);
-                console.log("data ", data);
+            // console.log('data ', data);
             }
         });
     }
