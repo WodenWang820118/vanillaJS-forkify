@@ -20,7 +20,7 @@ class ResultModel {
     try {
       queryService.queryObservable.subscribe(query => {
         if (query) {
-          console.log('query in result-model', query);
+          // console.log('query in result-model', query);
           // 1) load search results
           this.loadSearchResults(query);
   
@@ -88,7 +88,7 @@ class ResultModel {
         paginationService.clear(paginationElement);
         const paginationMarkup = paginationService.generateMarkup(data, page);
         viewService.render(true, paginationElement, paginationMarkup);
-        console.log('data ', data);
+        // console.log('data ', data);
       }
     });
   }
